@@ -3,12 +3,12 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Welcome to Chain!</h1>
 
-  {{> hello}}
-  {{> info}}
+  {{> login}}
 </body>
 
+<!--
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
@@ -21,6 +21,14 @@
     <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
     <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
     <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+    {{> loginButtons}}
+  </ul>
+</template>
+-->
+
+
+<template name="login">
+  <ul>
     {{> loginButtons}}
   </ul>
 </template>

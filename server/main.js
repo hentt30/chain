@@ -8,8 +8,13 @@ Meteor.startup(() => {
             userId: user._id
         });
 
-        for (i = 0; i < quant; i++){
-            UsersSubjects.update({ userId: user.id }, {$addToSet: {[i]: 0}});
+        let i = 0;
+
+        console.log(i);
+        console.log(quant);
+
+        for (i; i < quant; i++){
+            UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: 0}});
         }
 
         return user;
