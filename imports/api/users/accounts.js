@@ -1,6 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 
-notes = [{
+const notes = [{
     id: 1,
     label: '1',
     value: '1'
@@ -20,16 +20,16 @@ notes = [{
     id: 5,
     label: '5',
     value: '5',
-}]
+}];
 
-subjects = [
+const subjects = [
     ['politica', 'musica', 'esportes', 'filmes', 'comida'],
     ['Política', 'Música', 'Esportes', 'Filmes', 'Comida']
 ];
 
-num_subjects = 5;
+const num_subjects = 5;
 
-var fields_subjects = [];
+let fields_subjects = [];
 
 for (i = 0; i < num_subjects; i++) {
     fields_subjects.push({
@@ -87,18 +87,18 @@ Accounts.ui.config({
         fields_subjects[3],
         fields_subjects[4],
         {
-            fieldName: 'terms',
-            fieldLabel: 'I accept the terms and conditions',
-            inputType: 'checkbox',
-            visible: true,
-            saveToProfile: false,
-            validate: function(value, errorFunction) {
-                if (value) {
-                    return true;
-                } else {
-                    errorFunction('You must accept the terms and conditions.');
-                    return false;
-                }
+        fieldName: 'terms',
+        fieldLabel: 'I accept the terms and conditions',
+        inputType: 'checkbox',
+        visible: true,
+        saveToProfile: false,
+        validate: function(value, errorFunction) {
+            if (value) {
+                return true;
+            } else {
+                errorFunction('You must accept the terms and conditions.');
+                return false;
             }
-        }]
+        }
+    }]
 });
