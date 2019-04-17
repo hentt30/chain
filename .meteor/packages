@@ -24,3 +24,6 @@ service-configuration
 stylus
 ian:accounts-ui-bootstrap-3
 twbs:bootstrap
+accounts-base
+useraccounts:unstyled
+useraccounts:bootstrap
