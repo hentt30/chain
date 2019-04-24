@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 
-
 /*CSS*/
 
 const Title = styled.h1`
@@ -121,13 +120,12 @@ const LittleText = styled.a`
     color:#0360ad;
 `;
 
-export default class Login extends Component {
+export default class SignUpSubjects extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: '',
             emailIsFocused: false,
             passwordIsFocused: false,
         };
@@ -143,10 +141,6 @@ export default class Login extends Component {
         this.setState({ email: event.target.value });
     };
 
-    handleChangePassword = event => {
-        this.setState({ password: event.target.value });
-    };
-
     handleOnFocusEmail() {
         this.setState({ emailIsFocused: true, });
     }
@@ -155,9 +149,15 @@ export default class Login extends Component {
         this.setState({ passwordIsFocused: true, });
     }
 
-    login = () => {
+    createAccount = () => {
+        let newUserData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        Meteor.call('insertUser', newUserData);
+        console.log('Created Account');
         Meteor.loginWithPassword(this.state.email, this.state.password);
-        console.log('logged!');
+        console.log('Logged!');
     };
 
     render() {
@@ -166,7 +166,7 @@ export default class Login extends Component {
                 <Title>Chain</Title>
                 <SubTitle>Connecting peopole through ideas</SubTitle>
                 <CenterWrapper>
-                    <form onSubmit={this.login}>
+                    <form onSubmit={this.createAccount}>
                         <StayAway1>
                             <StayAway2>
                                 <PutInSameLineWrapper>
@@ -181,24 +181,10 @@ export default class Login extends Component {
                                     </WrapperSpanInput>
                                 </PutInSameLineWrapper>
                             </StayAway2>
-                            <StayAway2>
-                                <PutInSameLineWrapper>
-                                    <WrapperSpanInput>
-                                        <TitleInInput
-                                            isFocused={this.state.passwordIsFocused}
-                                            onClick={() => { this.handleOnFocusPassword() }}
-                                        >
-                                            <ImageNextToInput src="/images/lock.png" />Password
-                                        </TitleInInput>
-                                        <PasswordHolder id="password" type="password" name="password" onFocus={() => { this.handleOnFocusPassword() }} value={this.state.password} onChange={this.handleChangePassword}/>
-                                    </WrapperSpanInput>
-                                </PutInSameLineWrapper>
-                            </StayAway2>
-                            <SubmitButton> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                            <Link to='chat'><SubmitButton> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
                         </StayAway1>
                     </form>
                 </CenterWrapper>
-                <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link> </LittleText>
             </CenterWrapper>
         );
     }

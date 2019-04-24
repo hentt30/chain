@@ -1,38 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-import Links from '/imports/api/links';
 import { UsersSubjects, quant } from '../imports/api/subjects/subjects.js';
-
-
-function insertLink(title, url) {
-  Links.insert({ title, url, createdAt: new Date() });
-}
+import { Contacts, Messages } from '../lib/collections.js'
 
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
-  if (Links.find().count() === 0) {
-    insertLink(
-      'Do the Tutorial',
-      'https://www.meteor.com/tutorials/react/creating-an-app'
-    );
-
-    insertLink(
-      'Follow the Guide',
-      'http://guide.meteor.com'
-    );
-
-    insertLink(
-      'Read the Docs',
-      'https://docs.meteor.com'
-    );
-
-    insertLink(
-      'Discussions',
-      'https://forums.meteor.com'
-    );
-  }
-
-  /*Accounts.onCreateUser(function(options, user) {
+  Accounts.onCreateUser(function(options, user) {
 
     UsersSubjects.insert({
       userId: user._id
@@ -45,5 +17,11 @@ Meteor.startup(() => {
     }
 
     return user;
-  });*/
+  });
+
+  Meteor.methods({
+    'insertUser': function(newUserData) {
+        return Accounts.createUser(newUserData);
+    }
+  });
 });
