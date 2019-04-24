@@ -194,7 +194,7 @@ export default class Login extends Component {
                                     </WrapperSpanInput>
                                 </PutInSameLineWrapper>
                             </StayAway2>
-                            <SubmitButton> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                            <Link to="/chat"><SubmitButton> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
                         </StayAway1>
                     </form>
                 </CenterWrapper>
