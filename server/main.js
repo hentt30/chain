@@ -1,17 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 
 import { UsersSubjects, quant } from '../imports/api/subjects/subjects.js';
-import { Contacts, Messages } from '../lib/collections.js'
+import { Contacts, Messages, Profiles } from '../lib/collections.js'
 
 Meteor.startup(() => {
   Accounts.onCreateUser(function(options, user) {
-
     UsersSubjects.insert({
       userId: user._id
     });
-
     let i = 0;
-
     for (i; i < quant; i++){
       UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: 0}});
     }
@@ -21,7 +18,14 @@ Meteor.startup(() => {
 
   Meteor.methods({
     'insertUser': function(newUserData) {
-        return Accounts.createUser(newUserData);
+      return Accounts.createUser(newUserData);
+    },
+    'insertProfile': function(newUserData) {
+      Profiles.insert({
+          userId: Meteor.userId(),
+          firstName: newUserData.firstName,
+          lastName: newUserData.lastName
+      });
     }
   });
 });

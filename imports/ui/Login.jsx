@@ -69,9 +69,9 @@ const PasswordHolder = styled.input`
 const SubmitButton = styled.button`
 
     color: black;
-    width: 50%;
-    margin:10px;
-    margin-top:0px;
+    width: 100%;
+    margin: 0px;
+    margin-top: 0px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     background-color: #ccc;
@@ -165,8 +165,7 @@ export default class Login extends Component {
             <CenterWrapper>
                 <Title>Chain</Title>
                 <SubTitle>Connecting people through ideas</SubTitle>
-                <CenterWrapper>
-                    <form onSubmit={this.login}>
+                    <CenterWrapper>
                         <StayAway1>
                             <StayAway2>
                                 <PutInSameLineWrapper>
@@ -194,11 +193,10 @@ export default class Login extends Component {
                                     </WrapperSpanInput>
                                 </PutInSameLineWrapper>
                             </StayAway2>
-                            <Link to="/chat"><SubmitButton> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
+                            <Link to="/chat"><SubmitButton onClick={this.login}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
                         </StayAway1>
-                    </form>
-                </CenterWrapper>
-                <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link> </LittleText>
+                    </CenterWrapper>
+                <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link></LittleText>
             </CenterWrapper>
         );
     }
