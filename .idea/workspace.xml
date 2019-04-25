@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="24cabb9f-345a-45ce-ab5b-1504c2de0b8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/ui/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/ui/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/ui/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/ui/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/collections.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/collections.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/imports/routes.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +25,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Login.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
+            <state relative-caret-position="209">
               <caret line="148" selection-start-line="148" selection-end-line="148" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -37,11 +34,24 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/routes.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#167#198#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/SignUp.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="237" column="34" selection-start-line="237" selection-start-column="34" selection-end-line="237" selection-end-column="34" />
+            <state relative-caret-position="286">
+              <caret line="286" column="36" selection-start-line="286" selection-start-column="36" selection-end-line="286" selection-end-column="36" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -58,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
@@ -103,7 +113,6 @@
         <option value="$PROJECT_DIR$/imports/api/routes.jsx" />
         <option value="$PROJECT_DIR$/client/main.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/PageNotFound.jsx" />
-        <option value="$PROJECT_DIR$/imports/routes.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/SignUpSubjects.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/Chat.jsx" />
         <option value="$PROJECT_DIR$/imports/lib/collections.js" />
@@ -112,13 +121,14 @@
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/lib/collections.js" />
         <option value="$PROJECT_DIR$/imports/ui/SignUp.jsx" />
+        <option value="$PROJECT_DIR$/imports/routes.jsx" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="-2" />
-    <option name="width" value="960" />
-    <option name="height" value="1082" />
+    <option name="width" value="950" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -127,6 +137,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -177,7 +188,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,17 +236,18 @@
       <workItem from="1556074323592" duration="11076000" />
       <workItem from="1556132527088" duration="4466000" />
       <workItem from="1556150769995" duration="6118000" />
+      <workItem from="1556232447833" duration="496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82468000" />
+    <option name="totallyTimeSpent" value="82964000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12219851" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12326574" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -323,17 +334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/routes.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#167#198#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/PageNotFound.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -381,26 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Login.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/SignUp.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="237" column="34" selection-start-line="237" selection-start-column="34" selection-end-line="237" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/collections.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -414,6 +394,37 @@
           <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/SignUp.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="286" column="36" selection-start-line="286" selection-start-column="36" selection-end-line="286" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Login.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/routes.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#167#198#0" expanded="true" />
           </folding>
         </state>
       </provider>

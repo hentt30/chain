@@ -12,13 +12,22 @@ import PageNotFound from './ui/PageNotFound.jsx';
 
 const browserHistory = createBrowserHistory();
 
+const authenticate = (nextState, replace) => {
+    if (!Meteor.loggingIn() && !Meteor.userId()) {
+        replace({
+            pathname: '/login',
+            state: { nextPathname: nextState.location.pathname },
+        });
+    }
+};
+
 export const renderRoutes = () => (
     <Router history={browserHistory}>
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/signup" component={SignUp}/>
-            <Route exact path="/signup-subjects" component={SignUpSubjects}/>
-            <Route exact path="/chat" component={Chat}/>
+            <Route exact path="/signup-subjects" component={SignUpSubjects} onEnter={authenticate}/>
+            <Route exact path="/chat" component={Chat} onEnter={authenticate}/>
             <Route component={PageNotFound}/>
         </Switch>
     </Router>
