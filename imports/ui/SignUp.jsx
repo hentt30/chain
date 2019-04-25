@@ -36,6 +36,42 @@ const EmailHolder = styled.input`
     }
 `;
 
+const FirstNameHolder = styled.input`
+    
+    color: #0360ad;
+    width: 200%;
+    padding:2px;
+    border: 0px;
+    border-bottom: 1px solid #0360ad;
+    &:focus{
+        outline:none;
+    }
+`;
+
+const SecondNameHolder = styled.input`
+    
+    color: #0360ad;
+    width: 200%;
+    padding:2px;
+    border: 0px;
+    border-bottom: 1px solid #0360ad;
+    &:focus{
+        outline:none;
+    }
+`;
+
+const UsernameHolder = styled.input`
+    
+    color: #0360ad;
+    width: 200%;
+    padding:2px;
+    border: 0px;
+    border-bottom: 1px solid #0360ad;
+    &:focus{
+        outline:none;
+    }
+`;
+
 const TitleInInput = styled.span`
 
     position: absolute;
@@ -74,7 +110,7 @@ const SubmitButton = styled.button`
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     background-color: #ccc;
-    border-radius:10px;
+    border-radius:8px;
     vertical-align: center;
     text-align:center;
 
@@ -127,12 +163,21 @@ export default class SignUp extends Component {
         this.state = {
             email: '',
             password: '',
+            firstName: '',
+            secondName: '',
+            username: '',
             emailIsFocused: false,
             passwordIsFocused: false,
+            firstNameIsFocused: false,
+            secondNameIsFocused: false,
+            usernameIsFocused: false
         };
 
         this.handleOnFocusEmail = this.handleOnFocusEmail.bind(this);
         this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
+        this.handleOnFocusFirstName = this.handleOnFocusFirstName.bind(this);
+        this.handleOnFocusSecondName = this.handleOnFocusSecondName.bind(this);
+        this.handleOnFocusUsername = this.handleOnFocusUsername.bind(this);
     }
 
 
@@ -146,6 +191,18 @@ export default class SignUp extends Component {
         this.setState({ password: event.target.value });
     };
 
+    handleChangeFirstName = event => {
+        this.setState({ firstName: event.target.value });
+    };
+
+    handleChangeSecondName = event => {
+        this.setState({ secondName: event.target.value });
+    };
+
+    handleChangeUsername = event => {
+        this.setState({ username: event.target.value });
+    };
+
     handleOnFocusEmail() {
         this.setState({ emailIsFocused: true, });
     }
@@ -154,10 +211,25 @@ export default class SignUp extends Component {
         this.setState({ passwordIsFocused: true, });
     }
 
+    handleOnFocusFirstName() {
+        this.setState({ firstNameIsFocused: true, });
+    }
+
+    handleOnFocusSecondName() {
+        this.setState({ secondNameIsFocused: true, });
+    }
+
+    handleOnFocusUsername() {
+        this.setState({ usernameIsFocused: true, });
+    }
+
     createAccount = () => {
         let newUserData = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            firstName: this.state.firstName,
+            secondName: this.state.secondName,
+            username: this.state.username
         };
         Meteor.call('insertUser', newUserData);
         console.log('Created Account');
@@ -169,7 +241,7 @@ export default class SignUp extends Component {
         return (
             <CenterWrapper>
                 <Title>Chain</Title>
-                <SubTitle>Connecting peopole through ideas</SubTitle>
+                <SubTitle>Join us!</SubTitle>
                 <CenterWrapper>
                     <form onSubmit={this.createAccount}>
                         <StayAway1>
@@ -177,10 +249,49 @@ export default class SignUp extends Component {
                                 <PutInSameLineWrapper>
                                     <WrapperSpanInput>
                                         <TitleInInput
+                                            isFocused={this.state.firstNameIsFocused}
+                                            onClick={() => { this.handleOnFocusFirstName() }}
+                                        >
+                                            <ImageNextToInput src="/images/user.png" /> First-Name
+                                        </TitleInInput>
+                                        <FirstNameHolder id="firstName" type="firstName" name="firstName" onFocus={() => { this.handleOnFocusFirstName() }} value={this.state.firstName} onChange={this.handleChangeFirstName}/>
+                                    </WrapperSpanInput>
+                                </PutInSameLineWrapper>
+                            </StayAway2>
+                            <StayAway2>
+                                <PutInSameLineWrapper>
+                                    <WrapperSpanInput>
+                                        <TitleInInput
+                                            isFocused={this.state.secondNameIsFocused}
+                                            onClick={() => { this.handleOnFocusSecondName() }}
+                                        >
+                                            <ImageNextToInput src="/images/user.png" /> Second-Name
+                                        </TitleInInput>
+                                        <SecondNameHolder id="secondName" type="secondName" name="secondName" onFocus={() => { this.handleOnFocusSecondName() }} value={this.state.secondName} onChange={this.handleChangeSecondName}/>
+                                    </WrapperSpanInput>
+                                </PutInSameLineWrapper>
+                            </StayAway2>
+                            <StayAway2>
+                                <PutInSameLineWrapper>
+                                    <WrapperSpanInput>
+                                        <TitleInInput
+                                            isFocused={this.state.usernameIsFocused}
+                                            onClick={() => { this.handleOnFocusUsername() }}
+                                        >
+                                            <ImageNextToInput src="/images/user.png" /> Username
+                                        </TitleInInput>
+                                        <UsernameHolder id="username" type="username" name="username" onFocus={() => { this.handleOnFocusUsername() }} value={this.state.username} onChange={this.handleChangeUsername}/>
+                                    </WrapperSpanInput>
+                                </PutInSameLineWrapper>
+                            </StayAway2>
+                            <StayAway2>
+                                <PutInSameLineWrapper>
+                                    <WrapperSpanInput>
+                                        <TitleInInput
                                             isFocused={this.state.emailIsFocused}
                                             onClick={() => { this.handleOnFocusEmail() }}
                                         >
-                                            <ImageNextToInput src="/images/user.png" />Email
+                                            <ImageNextToInput src="/images/user.png" /> Email
                                         </TitleInInput>
                                         <EmailHolder id="email" type="email" name="email" onFocus={() => { this.handleOnFocusEmail() }} value={this.state.email} onChange={this.handleChangeEmail}/>
                                     </WrapperSpanInput>
@@ -193,7 +304,7 @@ export default class SignUp extends Component {
                                             isFocused={this.state.passwordIsFocused}
                                             onClick={() => { this.handleOnFocusPassword() }}
                                         >
-                                            <ImageNextToInput src="/images/lock.png" />Password
+                                            <ImageNextToInput src="/images/lock.png" /> Password
                                         </TitleInInput>
                                         <PasswordHolder id="password" type="password" name="password" onFocus={() => { this.handleOnFocusPassword() }} value={this.state.password} onChange={this.handleChangePassword}/>
                                     </WrapperSpanInput>
@@ -203,7 +314,7 @@ export default class SignUp extends Component {
                         </StayAway1>
                     </form>
                 </CenterWrapper>
-                <LittleText>Still don't have an account? Click here!</LittleText>
+                <LittleText>Thank you for choosing us. Enjoy it!</LittleText>
             </CenterWrapper>
         );
     }

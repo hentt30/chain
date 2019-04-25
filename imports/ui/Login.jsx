@@ -164,7 +164,7 @@ export default class Login extends Component {
         return (
             <CenterWrapper>
                 <Title>Chain</Title>
-                <SubTitle>Connecting peopole through ideas</SubTitle>
+                <SubTitle>Connecting people through ideas</SubTitle>
                 <CenterWrapper>
                     <form onSubmit={this.login}>
                         <StayAway1>
@@ -175,7 +175,7 @@ export default class Login extends Component {
                                             isFocused={this.state.emailIsFocused}
                                             onClick={() => { this.handleOnFocusEmail() }}
                                         >
-                                            <ImageNextToInput src="/images/user.png" />Email
+                                            <ImageNextToInput src="/images/user.png" /> Email
                                         </TitleInInput>
                                         <EmailHolder id="email" type="email" name="email" onFocus={() => { this.handleOnFocusEmail() }} value={this.state.email} onChange={this.handleChangeEmail}/>
                                     </WrapperSpanInput>
@@ -188,7 +188,7 @@ export default class Login extends Component {
                                             isFocused={this.state.passwordIsFocused}
                                             onClick={() => { this.handleOnFocusPassword() }}
                                         >
-                                            <ImageNextToInput src="/images/lock.png" />Password
+                                            <ImageNextToInput src="/images/lock.png" /> Password
                                         </TitleInInput>
                                         <PasswordHolder id="password" type="password" name="password" onFocus={() => { this.handleOnFocusPassword() }} value={this.state.password} onChange={this.handleChangePassword}/>
                                     </WrapperSpanInput>

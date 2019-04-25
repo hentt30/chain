@@ -164,7 +164,7 @@ export default class SignUpSubjects extends Component {
         return (
             <CenterWrapper>
                 <Title>Chain</Title>
-                <SubTitle>Connecting peopole through ideas</SubTitle>
+                <SubTitle>Connecting people through ideas</SubTitle>
                 <CenterWrapper>
                     <form onSubmit={this.createAccount}>
                         <StayAway1>
@@ -175,7 +175,7 @@ export default class SignUpSubjects extends Component {
                                             isFocused={this.state.emailIsFocused}
                                             onClick={() => { this.handleOnFocusEmail() }}
                                         >
-                                            <ImageNextToInput src="/images/user.png" />Email
+                                            <ImageNextToInput src="/images/user.png" /> Email
                                         </TitleInInput>
                                         <EmailHolder id="email" type="email" name="email" onFocus={() => { this.handleOnFocusEmail() }} value={this.state.email} onChange={this.handleChangeEmail}/>
                                     </WrapperSpanInput>
