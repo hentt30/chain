@@ -9,6 +9,8 @@ import SignUp from './ui/SignUp.jsx';
 import SignUpSubjects from './ui/SignUpSubjects.jsx';
 import Chat from './ui/Chat.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
+import Header from './ui/Header.jsx';
+
 import PrivateRoute from './ui/PrivateRoute.jsx';
 
 
@@ -22,6 +24,7 @@ export const renderRoutes = () => (
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
             <Route component={PageNotFound}/>
+            <Route exact path="/test" component={Header}/>
         </Switch>
     </Router>
 );
