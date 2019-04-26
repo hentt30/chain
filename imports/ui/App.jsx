@@ -1,11 +1,10 @@
 import React from 'react';
 import Login from './Login.jsx';
-import SideBar from './SideBar.jsx';
+import Header from './Header.jsx';
 
 const App = () => (
   <div>
-    <SideBar />
-    <Login />
+    <Header />
   </div>
 );
 
