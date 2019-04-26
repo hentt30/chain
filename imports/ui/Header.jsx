@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Holder = styled.div`
 
-    padding: 20px;
     width: 100%;
     background-color: #ccc;
     display: flex;

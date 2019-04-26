@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 // route components
 import App from './ui/App.jsx';
 import SignUp from './ui/SignUp.jsx';
-import SignUpSubjects from './ui/SignUpSubjects.jsx';
+import SignUpSubjects from './ui/SignUpSubjects/SignUpSubjects.jsx';
 import Chat from './ui/Chat.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
 import Header from './ui/Header.jsx';
