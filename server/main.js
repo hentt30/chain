@@ -28,10 +28,6 @@ Meteor.startup(() => {
       });
     },
     'insertUserSubject': function (SubjectData, i) {
-      let count;
-      for (count = 0; count < quant; count++){
-        UsersSubjects.update({ userId: Meteor.userId() }, {$addToSet: {[count]: 0}});
-      }
       UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [SubjectData]}});
     }
   });
