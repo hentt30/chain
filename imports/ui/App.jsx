@@ -5,6 +5,7 @@ import Header from './Header.jsx';
 const App = () => (
   <div>
     <Header />
+    <Login />
   </div>
 );
 
