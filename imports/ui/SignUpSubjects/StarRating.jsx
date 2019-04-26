@@ -3,11 +3,20 @@ import { Meteor } from 'meteor/meteor';
 import StarRatings from 'react-star-ratings';
 import styled from "styled-components";
 import { allSubjects } from '../../api/subjects/allSubjects.js';
+import {Link} from "react-router-dom";
 
 const SubTitle = styled.h1`
     text-align: center;
     font-size: 1.0em;
     color: #0360ad;
+`;
+
+const CenterWrapper = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
 `;
 
 
@@ -16,14 +25,21 @@ export default class StarRating extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating: 0
+            rating: 0,
+            i: props.i,
         };
 
         this.changeRating= this.changeRating.bind(this);
+        this.updateSubjects= this.updateSubjects.bind(this);
     }
 
     changeRating( newRating ) {
         this.setState({ rating: newRating, });
+    }
+
+    updateSubjects(i) {
+        Meteor.call('insertUserSubject', this.state.rating, i);
+        console.log("Subject insert!")
     }
 
     render() {
@@ -36,31 +52,15 @@ export default class StarRating extends Component {
         };
         return (
             <div>
-                <SubTitle>{allSubjects[0][0]}</SubTitle>
+                <CenterWrapper>
+                <SubTitle>{allSubjects[0][this.state.i]}</SubTitle>
                 <StarRatings
                     {...starProps}
                     changeRating={this.changeRating}
+                    onClick={this.updateSubjects(this.state.i)}
                 />
-                <SubTitle>{allSubjects[0][1]}</SubTitle>
-                <StarRatings
-                    {...starProps}
-                    changeRating={this.changeRating}
-                />
-                <SubTitle>{allSubjects[0][2]}</SubTitle>
-                <StarRatings
-                    {...starProps}
-                    changeRating={this.changeRating}
-                />
-                <SubTitle>{allSubjects[0][3]}</SubTitle>
-                <StarRatings
-                    {...starProps}
-                    changeRating={this.changeRating}
-                />
-                <SubTitle>{allSubjects[0][4]}</SubTitle>
-                <StarRatings
-                    {...starProps}
-                    changeRating={this.changeRating}
-                />
+                <br/>
+                </CenterWrapper>
             </div>
         );
     }

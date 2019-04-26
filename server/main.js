@@ -17,15 +17,22 @@ Meteor.startup(() => {
   });
 
   Meteor.methods({
-    'insertUser': function(newUserData) {
+    'insertUser': function (newUserData) {
       return Accounts.createUser(newUserData);
     },
-    'insertProfile': function(newUserData) {
+    'insertProfile': function (newUserData) {
       Profiles.insert({
-          userId: Meteor.userId(),
-          firstName: newUserData.firstName,
-          lastName: newUserData.lastName
+        userId: Meteor.userId(),
+        firstName: newUserData.firstName,
+        lastName: newUserData.lastName
       });
+    },
+    'insertUserSubject': function (SubjectData, i) {
+      let count;
+      for (count = 0; count < quant; count++){
+        UsersSubjects.update({ userId: Meteor.userId() }, {$addToSet: {[count]: 0}});
+      }
+      UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [SubjectData]}});
     }
   });
 });

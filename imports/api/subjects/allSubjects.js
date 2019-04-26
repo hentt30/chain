@@ -1,4 +1,4 @@
 export const allSubjects = [
-    ['Política', 'Música', 'Esportes', 'Filmes', 'Comida'],
-    ['politica', 'musica', 'esportes', 'filmes', 'comida']
+    ['Política', 'Música', 'Esportes', 'Filmes', 'Comida', 'Astronomia'],
+    ['politica', 'musica', 'esportes', 'filmes', 'comida', 'astronomia']
 ];

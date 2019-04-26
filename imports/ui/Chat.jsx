@@ -56,7 +56,7 @@ export default class Chat extends Component {
             <CenterWrapper>
                 <Title>Chain</Title>
                 <SubTitle>Chat!</SubTitle>
-                <Link to="/"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
+                <Link to="/"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Logout</SubmitButton></Link>
             </CenterWrapper>
         );
     }
