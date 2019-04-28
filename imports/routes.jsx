@@ -10,6 +10,7 @@ import SignUpSubjects from './ui/SignUpSubjects/SignUpSubjects.jsx';
 import Chat from './ui/Chat.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
 import Header from './ui/Header.jsx';
+import Login from './ui/Login.jsx';
 
 import PrivateRoute from './ui/PrivateRoute.jsx';
 
@@ -21,10 +22,12 @@ export const renderRoutes = () => (
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/signup" component={SignUp}/>
+            <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
             <Route component={PageNotFound}/>
             <Route exact path="/test" component={Header}/>
+            
         </Switch>
     </Router>
 );

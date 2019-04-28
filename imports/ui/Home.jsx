@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import Header from './Header.jsx';
+
+
 
 /*CSS*/
 
 const Title = styled.h1`
     text-align: center;
-    font-size: 2.0em;
-    color: #0360ad;
+    font-size: 10.0em;
+    color: #FFFFFF;
 `;
 
 const SubTitle = styled.h1`
      text-align: center;
-    font-size: 1.0em;
-    color: #0360ad;
+    font-size: 3.0em;
+    color:  #FFFFFF;
     margin-bottom: 50px;
 `;
 
@@ -47,11 +48,14 @@ const TitleInInput = styled.span`
     font-size: ${props => (props.isFocused ? "0.75em" : "auto")};
 `;
 
-const ImageNextToInput = styled.img`
-
-    width:16px;
-    padding:0px;
-    margin:0px;
+const Image = styled.img`
+  
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height:auto;
+    
 `;
 
 const PasswordHolder = styled.input`
@@ -68,29 +72,36 @@ const PasswordHolder = styled.input`
 
 const SubmitButton = styled.button`
 
-    color: black;
-    width: 100%;
-    margin: 0px;
-    margin-top: 0px;
+    color: white;
+    width: 200px;
+    padding:30px;
+    font-size:30px;
+
+    margin: 10px;
+    margin-top: 20px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
-    background-color: #ccc;
-    border-radius:10px;
+    background-color: #FF0000;
+    border-radius:30px;
     vertical-align: center;
     text-align:center;
 
     &:hover {
-    background-color: #0360ad;
+    background-color: #FF0000;
     color: white;
     }   
 `;
 
-const CenterWrapper = styled.div`
-
+const CenterWrapper = styled.div`    
+    width:100vw;
+    height:100vh;
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content:center;
+    background-image: url('/images/brain_home.jpg');
+
+
 `;
 
 const StayAway1 = styled.div`
@@ -121,7 +132,7 @@ const LittleText = styled.a`
     color:#0360ad;
 `;
 
-export default class Login extends Component {
+export default class Home extends Component {
 
     constructor(props) {
         super(props);
@@ -164,41 +175,14 @@ export default class Login extends Component {
         return (
             
             <CenterWrapper>
-                <Header />
+               
                 <Title>Chain</Title>
-                <SubTitle>Connecting people through ideas</SubTitle>
-                    <CenterWrapper>
-                        <StayAway1>
-                            <StayAway2>
-                                <PutInSameLineWrapper>
-                                    <WrapperSpanInput>
-                                        <TitleInInput
-                                            isFocused={this.state.emailIsFocused}
-                                            onClick={() => { this.handleOnFocusEmail() }}
-                                        >
-                                            <ImageNextToInput src="/images/user.png" /> Email
-                                        </TitleInInput>
-                                        <EmailHolder id="email" type="email" name="email" onFocus={() => { this.handleOnFocusEmail() }} value={this.state.email} onChange={this.handleChangeEmail}/>
-                                    </WrapperSpanInput>
-                                </PutInSameLineWrapper>
-                            </StayAway2>
-                            <StayAway2>
-                                <PutInSameLineWrapper>
-                                    <WrapperSpanInput>
-                                        <TitleInInput
-                                            isFocused={this.state.passwordIsFocused}
-                                            onClick={() => { this.handleOnFocusPassword() }}
-                                        >
-                                            <ImageNextToInput src="/images/lock.png" /> Password
-                                        </TitleInInput>
-                                        <PasswordHolder id="password" type="password" name="password" onFocus={() => { this.handleOnFocusPassword() }} value={this.state.password} onChange={this.handleChangePassword}/>
-                                    </WrapperSpanInput>
-                                </PutInSameLineWrapper>
-                            </StayAway2>
-                            <Link to="/chat"><SubmitButton onClick={this.login}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
-                        </StayAway1>
-                    </CenterWrapper>
-                <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link></LittleText>
+                <SubTitle>Connecting People Through Ideas</SubTitle>
+                <Link to="/signup"><SubmitButton onClick={this.login}> <b>Sign Up</b> </SubmitButton></Link>
+                <Link to="/login"><SubmitButton onClick={this.login}> <b>Login</b></SubmitButton></Link>
+                
+                
+               
             </CenterWrapper>
         );
     }
