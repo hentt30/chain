@@ -46,17 +46,13 @@ const SubmitButton = styled.button`
 `;
 
 export default class Chat extends Component {
-    logout = () => {
-        Meteor.logout();
-        console.log('Logged!');
-    };
 
     render() {
         return (
             <CenterWrapper>
                 <Title>Chain</Title>
                 <SubTitle>Chat!</SubTitle>
-                <Link to="/"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Logout</SubmitButton></Link>
+                <Link to="/"><SubmitButton onClick={Meteor.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Logout</SubmitButton></Link>
             </CenterWrapper>
         );
     }

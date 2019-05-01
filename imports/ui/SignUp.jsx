@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import { Link } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 /*CSS*/
 
@@ -166,6 +166,8 @@ export default class SignUp extends Component {
             firstName: '',
             lastName: '',
             username: '',
+            error: '',
+            redirect: false,
             emailIsFocused: false,
             passwordIsFocused: false,
             firstNameIsFocused: false,
@@ -223,20 +225,39 @@ export default class SignUp extends Component {
         this.setState({ usernameIsFocused: true, });
     }
 
-    createAccount = () => {
+    createAccount = (event) => {
+        event.preventDefault ();
+
+        console.log('E - submit #form-signup');
+
         let newUserData = {
             email: this.state.email,
             password: this.state.password,
             username: this.state.username,
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
         };
-        console.log(newUserData);
-        Meteor.call('insertUser', newUserData);
-        console.log('Created Account');
-        Meteor.loginWithPassword(this.state.email, this.state.password);
-        Meteor.call('insertProfile', newUserData);
-        console.log('Logged!');
+        if (newUserData.email !== '' && newUserData.password !== '' && newUserData.username !== '' && newUserData.firstName !== '' && newUserData.lastName !== ''){
+            console.log(newUserData);
+            Meteor.call('insertUser', newUserData, (error) => {
+                if (error) {
+                    this.setState({error: error.reason});
+                } else
+                    this.setState({redirect: true});
+            });
+            console.log('Created Account');
+            Meteor.loginWithPassword(this.state.email, this.state.password);
+            Meteor.call('insertProfile', newUserData);
+            console.log('Logged!');
+        } else {
+            this.setState({ error: 'Please provide all fields.' });
+        }
+    };
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to="/signup-subjects" />
+        }
     };
 
     render() {
@@ -245,6 +266,8 @@ export default class SignUp extends Component {
                 <Title>Chain</Title>
                 <SubTitle>Join us!</SubTitle>
                 <CenterWrapper>
+                    { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
+                    { this.renderRedirect() }
                     <StayAway1>
                         <StayAway2>
                             <PutInSameLineWrapper>
@@ -311,7 +334,7 @@ export default class SignUp extends Component {
                                 </WrapperSpanInput>
                             </PutInSameLineWrapper>
                         </StayAway2>
-                        <Link to="/signup-subjects"><SubmitButton onClick={this.createAccount}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
+                        <SubmitButton onClick={this.createAccount}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
                     </StayAway1>
                 </CenterWrapper>
                 <LittleText>Thank you for choosing us. Enjoy it!</LittleText>

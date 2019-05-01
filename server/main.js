@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { UsersSubjects, quant } from '../imports/api/subjects/subjects.js';
 import { Contacts, Messages, Profiles } from '../lib/collections.js'
+import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {
   Accounts.onCreateUser(function(options, user) {
@@ -15,6 +16,11 @@ Meteor.startup(() => {
 
     return user;
   });
+
+  Accounts.config({
+    loginExpirationInDays: 1
+  });
+
 
   Meteor.methods({
     'insertUser': function (newUserData) {
