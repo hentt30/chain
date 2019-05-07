@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import {Link} from "react-router-dom";
+//import DirectMessageItem from './Item.jsx';
 
 /*CSS*/
 
@@ -46,13 +47,46 @@ const SubmitButton = styled.button`
 `;
 
 export default class Chat extends Component {
+    constructor(props){
+        super(props);
+        this.state = this.getMeteorData();
+        this.logout = this.logout.bind(this);
+    }
+
+    getMeteorData(){
+        return { isAuthenticated: Meteor.userId() !== null };
+    }
+
+    componentWillMount(){
+        if (!this.state.isAuthenticated) {
+            this.props.history.push('/login');
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if (!this.state.isAuthenticated) {
+            this.props.history.push('/login');
+        }
+    }
+
+    logout(e){
+        e.preventDefault();
+        Meteor.logout( (err) => {
+            if (err) {
+                console.log( err.reason );
+            } else {
+                this.props.history.push('/login');
+            }
+        });
+    }
+
 
     render() {
         return (
             <CenterWrapper>
                 <Title>Chain</Title>
                 <SubTitle>Chat!</SubTitle>
-                <Link to="/"><SubmitButton onClick={Meteor.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Logout</SubmitButton></Link>
+                <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Logout</SubmitButton></Link>
             </CenterWrapper>
         );
     }

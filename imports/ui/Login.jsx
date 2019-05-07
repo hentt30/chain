@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import {Link, Redirect, Route} from 'react-router-dom';
+import {Link, Redirect, withHistory} from 'react-router-dom';
 import Header from './Header.jsx';
 
 /*CSS*/
@@ -165,25 +165,32 @@ export default class Login extends Component {
 
         console.log('E - submit #form-login');
 
-        if(this.state.email !== '' && this.state.password !== '') {
+        /*if(this.state.email != '' && this.state.password != '') {
             Meteor.loginWithPassword(this.state.email, this.state.password, (error) => {
                 console.log('M - loginWithPassword / callback');
-
                 if(error) {
                     this.setState({ error: error.reason });
+                } else if(!Accounts.onLogin()) {
+                    this.setState({error: "Login Failed"});
                 } else {
-                    this.setState({ redirect: true });
+                    console.log(Meteor.userId());
+                    this.setState({ redirect: false })
                 }
             });
         } else {
             this.setState({ error: 'Please provide username and password.' });
-        }
-    };
+        }*/
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            return <Redirect to="chat" />
-        }
+        Meteor.loginWithPassword(this.state.email, this.state.password, (err) => {
+            if(err){
+                this.setState({
+                    error: err.reason
+                });
+            } else {
+                this.props.history.push('/chat');
+            }
+        });
+
     };
 
     render() {
@@ -195,7 +202,6 @@ export default class Login extends Component {
                 <SubTitle>Connecting people through ideas</SubTitle>
                     <CenterWrapper>
                         { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
-                        { this.renderRedirect() }
                         <StayAway1>
                             <StayAway2>
                                 <PutInSameLineWrapper>

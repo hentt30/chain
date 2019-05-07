@@ -242,21 +242,16 @@ export default class SignUp extends Component {
             Meteor.call('insertUser', newUserData, (error) => {
                 if (error) {
                     this.setState({error: error.reason});
-                } else
-                    this.setState({redirect: true});
+                } else {
+                    Meteor.loginWithPassword(this.state.email, this.state.password);
+                    this.props.history.push('/signup-subjects');
+                    Meteor.call('insertProfile', newUserData);
+                }
             });
             console.log('Created Account');
-            Meteor.loginWithPassword(this.state.email, this.state.password);
-            Meteor.call('insertProfile', newUserData);
             console.log('Logged!');
         } else {
             this.setState({ error: 'Please provide all fields.' });
-        }
-    };
-
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            return <Redirect to="/signup-subjects" />
         }
     };
 
@@ -267,7 +262,6 @@ export default class SignUp extends Component {
                 <SubTitle>Join us!</SubTitle>
                 <CenterWrapper>
                     { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
-                    { this.renderRedirect() }
                     <StayAway1>
                         <StayAway2>
                             <PutInSameLineWrapper>

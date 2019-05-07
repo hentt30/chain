@@ -17,11 +17,6 @@ Meteor.startup(() => {
     return user;
   });
 
-  Accounts.config({
-    loginExpirationInDays: 1
-  });
-
-
   Meteor.methods({
     'insertUser': function (newUserData) {
       return Accounts.createUser(newUserData);
