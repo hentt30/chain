@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import { Link } from 'react-router-dom';
+import {Link, Redirect, withHistory} from 'react-router-dom';
 import Header from './Header.jsx';
 import Item from './item.jsx';
 
@@ -129,6 +129,8 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            error: '',
+            redirect: false,
             emailIsFocused: false,
             passwordIsFocused: false,
         };
@@ -156,9 +158,40 @@ export default class Login extends Component {
         this.setState({ passwordIsFocused: true, });
     }
 
-    login = () => {
-        Meteor.loginWithPassword(this.state.email, this.state.password);
-        console.log('logged!');
+    login = (event) => {
+//        Meteor.loginWithPassword(this.state.email, this.state.password);
+//        console.log('logged!');
+
+        event.preventDefault();
+
+        console.log('E - submit #form-login');
+
+        /*if(this.state.email != '' && this.state.password != '') {
+            Meteor.loginWithPassword(this.state.email, this.state.password, (error) => {
+                console.log('M - loginWithPassword / callback');
+                if(error) {
+                    this.setState({ error: error.reason });
+                } else if(!Accounts.onLogin()) {
+                    this.setState({error: "Login Failed"});
+                } else {
+                    console.log(Meteor.userId());
+                    this.setState({ redirect: false })
+                }
+            });
+        } else {
+            this.setState({ error: 'Please provide username and password.' });
+        }*/
+
+        Meteor.loginWithPassword(this.state.email, this.state.password, (err) => {
+            if(err){
+                this.setState({
+                    error: err.reason
+                });
+            } else {
+                this.props.history.push('/chat');
+            }
+        });
+
     };
 
     render() {
@@ -169,6 +202,7 @@ export default class Login extends Component {
                 <Title>Chain</Title>
                 <SubTitle>Connecting people through ideas</SubTitle>
                     <CenterWrapper>
+                        { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
                         <StayAway1>
                             <StayAway2>
                                 <PutInSameLineWrapper>
@@ -196,7 +230,7 @@ export default class Login extends Component {
                                     </WrapperSpanInput>
                                 </PutInSameLineWrapper>
                             </StayAway2>
-                            <Link to="/chat"><SubmitButton onClick={this.login}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton></Link>
+                            <SubmitButton onClick={this.login}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
                         </StayAway1>
                     </CenterWrapper>
                 <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link></LittleText>
