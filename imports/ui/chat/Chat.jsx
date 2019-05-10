@@ -67,7 +67,8 @@ const MessageHolder = styled.input`
     border-bottom: 1px solid #0360ad;
     position:absolute;
     top:90%;
-    left:25%
+    left:25%;
+    defaultValue:Type your message here;
     &:focus{
         outline:none;
     }
@@ -102,6 +103,15 @@ export default class Chat extends Component {
         super(props);
         this.state = this.getMeteorData();
         this.logout = this.logout.bind(this);
+        this.sand = {
+            message:'',
+            messageIsFocused:false
+        };
+        this.handleOnFocusMessage = this.handleOnFocusMessage.bind(this);
+    }
+
+    handleOnFocusMessage(){
+        this.setState({messageIsFocused:true,});
     }
 
     getMeteorData(){
@@ -131,9 +141,21 @@ export default class Chat extends Component {
         });
     }
 
-    send(e){
+    aend = (event) =>{
+        event.preventDefault();
 
-    }
+        console.log('E - submit #form-message');
+
+        let NewMsgData = {
+              message = this.send.message,
+              //sender_id =,
+              //reciever_id=,
+              //msg_id =,
+              //data =,
+        };
+
+
+    };
 
 
     render() {
@@ -141,7 +163,10 @@ export default class Chat extends Component {
             <main>
                 <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
                 <forma>
-                <MessageHolder id="username" type="username" name="username"/>
+                <MessageHolder  
+                isFocused={this.sand.messageIsFocused}
+                onClick={() => { this.handleOnFocusMessage() }} >
+                </MessageHolder>
                 <SendButton onClick={this.send}> <img src="/images/seta.png" style={{ width: "16px", marginRight: "10px" }} /><b>Send</b></SendButton>
                 </forma>
                 <CenterWrapper>
