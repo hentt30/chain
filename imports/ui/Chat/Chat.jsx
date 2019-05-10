@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import {Link} from "react-router-dom";
-//import DirectMessageItem from './Item.jsx';
 
 /*CSS*/
 
