@@ -46,10 +46,6 @@ export default class Item extends Component {
                     <Logo src="/images/rubens.jpeg"/>
                     <Name>Rubens</Name> 
                 </GoToLeft>
-                <GoToLeft>
-                    <Logo src="/images/rubens.jpeg"/>
-                    <Name>Rubens2</Name> 
-                </GoToLeft>
             </Holder2>
             );
     }

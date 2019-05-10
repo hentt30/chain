@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import {Link} from "react-router-dom";
 
-
-//import DirectMessageItem from './Item.jsx';
-
 /*CSS*/
-
 
 const Title = styled.h1`
     text-align: center;
@@ -149,15 +145,14 @@ export default class Chat extends Component {
                 <SendButton onClick={this.send}> <img src="/images/seta.png" style={{ width: "16px", marginRight: "10px" }} /><b>Send</b></SendButton>
                 </forma>
                 <CenterWrapper>
-               
-                
+
+
 
                 </CenterWrapper>
 
-                
-                
+
+
             </main >
         );
     }
 }
-

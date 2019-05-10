@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import StarRatings from 'react-star-ratings';
 import styled from "styled-components";
-import { allSubjects } from '../../api/subjects/allSubjects.js';
+import { allSubjects } from '../../../api/subjects/allSubjects.js';
 import {Link} from "react-router-dom";
 
 const SubTitle = styled.h1`

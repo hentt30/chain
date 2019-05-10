@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import {Link, Redirect, withHistory} from 'react-router-dom';
-import Header from './Header.jsx';
-import Item from './item.jsx';
+import Header from '../common/Header.jsx';
 
 /*CSS*/
 
