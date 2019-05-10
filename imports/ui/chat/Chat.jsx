@@ -141,19 +141,7 @@ export default class Chat extends Component {
         });
     }
 
-    aend = (event) =>{
-        event.preventDefault();
-
-        console.log('E - submit #form-message');
-
-        let NewMsgData = {
-              message = this.send.message,
-              //sender_id =,
-              //reciever_id=,
-              //msg_id =,
-              //data =,
-        };
-
+    send = (e) =>{
 
     };
 
