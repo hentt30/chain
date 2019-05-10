@@ -5,11 +5,11 @@ import { Meteor } from 'meteor/meteor';
 
 // route components
 import App from './ui/App.jsx';
-import SignUp from './ui/SignUp.jsx';
-import SignUpSubjects from './ui/SignUpSubjects/SignUpSubjects.jsx';
-import Chat from './ui/Chat/Chat.jsx';
+import SignUp from './ui/user/SignUp.jsx';
+import SignUpSubjects from './ui/user/subjects/SignUpSubjects.jsx';
+import Chat from './ui/chat/Chat.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
-import Login from './ui/Login.jsx';
+import Login from './ui/user/Login.jsx';
 import PrivateRoute from "./ui/PrivateRoute";
 
 
