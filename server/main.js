@@ -1,8 +1,8 @@
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
 
-import { UsersSubjects, quant } from '../imports/api/subjects/subjects.js';
-import { Contacts, Messages, Profiles } from '../lib/collections.js'
-import { Accounts } from 'meteor/accounts-base';
+import {quant, UsersSubjects} from '../imports/api/subjects/subjects.js';
+import {Profiles} from '../lib/collections.js'
+import {Accounts} from 'meteor/accounts-base';
 
 Meteor.startup(() => {
   Accounts.onCreateUser(function(options, user) {
@@ -30,6 +30,14 @@ Meteor.startup(() => {
     },
     'insertUserSubject': function (SubjectData, i) {
       UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [SubjectData]}});
+    },
+    'usersAll': function () {
+      return Meteor.users.find({ _id: { $ne: Meteor.userId() } }, { sort: { createdAt: -1 }}).fetch();
+    },
+    'directMessageRoom': (myId, friendId) => {
+      return {
+        chatRoomId: myId + friendId
+      };
     }
   });
 });

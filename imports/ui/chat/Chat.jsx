@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import {Link} from "react-router-dom";
+import Items from "./items";
 
 /*CSS*/
 
@@ -24,10 +25,8 @@ const CenterWrapper = styled.div`
     align-items:center;
     justify-content:center;
 `;
-const forma = styled.div`
+const Forma = styled.div`
     display:inline-block;
-
-
 `;
 
 const SubmitButton = styled.button`
@@ -150,22 +149,15 @@ export default class Chat extends Component {
         return (
             <main>
                 <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
-                <forma>
-                <MessageHolder  
-                isFocused={this.sand.messageIsFocused}
-                onClick={() => { this.handleOnFocusMessage() }} >
-                </MessageHolder>
-                <SendButton onClick={this.send}> <img src="/images/seta.png" style={{ width: "16px", marginRight: "10px" }} /><b>Send</b></SendButton>
-                </forma>
-                <CenterWrapper>
-
-
-
-                </CenterWrapper>
-
-
-
-            </main >
+                <Items {...this.props}/>
+                <Forma>
+                    <MessageHolder
+                    isFocused={this.sand.messageIsFocused}
+                    onClick={() => { this.handleOnFocusMessage() }} >
+                    </MessageHolder>
+                    <SendButton onClick={this.send}> <img src="/images/seta.png" style={{ width: "16px", marginRight: "10px" }} /><b>Send</b></SendButton>
+                </Forma>
+            </main>
         );
     }
 }

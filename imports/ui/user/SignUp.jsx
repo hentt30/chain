@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import {Link, Redirect} from 'react-router-dom';
 
 /*CSS*/
 

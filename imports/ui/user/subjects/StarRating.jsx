@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import StarRatings from 'react-star-ratings';
 import styled from "styled-components";
 import { allSubjects } from '../../../api/subjects/allSubjects.js';
-import {Link} from "react-router-dom";
 
 const SubTitle = styled.h1`
     text-align: center;
@@ -29,8 +28,8 @@ export default class StarRating extends Component {
             i: props.i,
         };
 
-        this.changeRating= this.changeRating.bind(this);
-        this.updateSubjects= this.updateSubjects.bind(this);
+        this.changeRating = this.changeRating.bind(this);
+        this.updateSubjects = this.updateSubjects.bind(this);
     }
 
     changeRating( newRating ) {
