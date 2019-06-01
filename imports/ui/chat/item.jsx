@@ -50,7 +50,7 @@ export default class Item extends Component {
                 console.log(error);
             } else {
                 console.log(response.chatRoomId);
-                this.props.history.push(`chat/${ response.chatRoomId }`);
+                this.props.history.push(`${ response.chatRoomId }`);
             }
         });
     }

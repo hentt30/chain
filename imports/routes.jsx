@@ -24,7 +24,7 @@ export const renderRoutes = () => (
             <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
-            <PrivateRoute exact path="/chat/:chatRoomId" component={PageNotFound}/>
+            <PrivateRoute exact path="/chat/:chatRoomId" component={ChatRoom}/>
             <Route component={PageNotFound}/>
         </Switch>
     </Router>

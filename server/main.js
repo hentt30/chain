@@ -41,7 +41,6 @@ Meteor.startup(() => {
         time: new Date(),
         text: text
       };
-
       Messages.insert(message);
     },
     'findMessage': () => {
