@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {quant, UsersSubjects} from '../imports/api/subjects/subjects.js';
 import {Profiles} from '../lib/collections.js';
 import {Messages} from '../lib/collections.js';
+import {ChatRoomMembers} from '../lib/collections.js';
 import {Accounts} from 'meteor/accounts-base';
 
 Meteor.startup(() => {
@@ -32,8 +33,34 @@ Meteor.startup(() => {
     },
     'usersAll': () => Meteor.users.find({_id: {$ne: Meteor.userId()}}, {sort: {createdAt: -1}}).fetch(),
     'directMessageRoom': (myId, friendId) => {
+      let chatRoomId = myId + friendId > friendId + myId ? myId + friendId : friendId + myId;
+
+      let response = {
+        success: false,
+        message: 'There was some sever error.',
+        data: {
+          chatRoomId: ''
+        }
+      };
+
+      if(friendId !== '') {
+        // Check if both user have already started chatting (chat room exists) or chatting for first time (create new chat room)
+        // Chat room exists check
+        const chatRoomMember = ChatRoomMembers.findOne({ chatRoomId: chatRoomId, userId: friendId });
+
+        if(!chatRoomMember) {
+          // Chat room does not exists, create a new chat room
+          ChatRoomMembers.insert({chatRoomId: chatRoomId, userId: Meteor.userId()});
+          ChatRoomMembers.insert({chatRoomId: chatRoomId, userId: friendId});
+
+          response.success = true;
+          response.message = 'Chat room available.';
+          response.data.chatRoomId = chatRoomId;
+        }
+      }
+
       return {
-        chatRoomId: myId + friendId > friendId + myId ? myId + friendId : friendId + myId,
+        chatRoomId: chatRoomId,
       };
     },
     'addMessage': (text) => {

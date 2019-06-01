@@ -47,11 +47,11 @@ export default class Item extends Component {
             console.log('M - ChatRoomMethods.getDirectMessageRoom / callback');
 
             if(error) {
-                console.log(error);
+                console.log(error.reason);
             } else {
                 console.log(response.chatRoomId);
                 let location = this.props.history.location.pathname;
-                console.log(location === '/chat');
+
                 if( location === '/chat' ){
                     this.props.history.replace(`${this.props.history.location.pathname + '/' + response.chatRoomId }`);
                 }
