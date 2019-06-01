@@ -60,7 +60,6 @@ export default class Items extends Component {
             if(error) {
             } else if (this.state.usersAll === undefined) {
                 this.setState({usersAll: result});
-                console.log(this.state.usersAll);
             }
         });
 

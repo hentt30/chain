@@ -1,11 +1,12 @@
 import {Meteor} from 'meteor/meteor';
 
 import {quant, UsersSubjects} from '../imports/api/subjects/subjects.js';
-import {Profiles} from '../lib/collections.js'
+import {Profiles} from '../lib/collections.js';
+import {Messages} from '../lib/collections.js';
 import {Accounts} from 'meteor/accounts-base';
 
 Meteor.startup(() => {
-  Accounts.onCreateUser(function(options, user) {
+  Accounts.onCreateUser((options, user) => {
     UsersSubjects.insert({
       userId: user._id
     });
@@ -18,26 +19,33 @@ Meteor.startup(() => {
   });
 
   Meteor.methods({
-    'insertUser': function (newUserData) {
-      return Accounts.createUser(newUserData);
-    },
-    'insertProfile': function (newUserData) {
+    'insertUser': newUserData => Accounts.createUser(newUserData),
+    'insertProfile': newUserData => {
       Profiles.insert({
         userId: Meteor.userId(),
         firstName: newUserData.firstName,
         lastName: newUserData.lastName
       });
     },
-    'insertUserSubject': function (SubjectData, i) {
+    'insertUserSubject': (SubjectData, i) => {
       UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [SubjectData]}});
     },
-    'usersAll': function () {
-      return Meteor.users.find({ _id: { $ne: Meteor.userId() } }, { sort: { createdAt: -1 }}).fetch();
-    },
+    'usersAll': () => Meteor.users.find({_id: {$ne: Meteor.userId()}}, {sort: {createdAt: -1}}).fetch(),
     'directMessageRoom': (myId, friendId) => {
       return {
-        chatRoomId: myId + friendId
+        chatRoomId: myId + friendId > friendId + myId ? myId + friendId : friendId + myId,
       };
+    },
+    'addMessage': (text) => {
+      let message = {
+        time: new Date(),
+        text: text
+      };
+
+      Messages.insert(message);
+    },
+    'findMessage': () => {
+      return Messages.find({}).fetch();
     }
   });
 });

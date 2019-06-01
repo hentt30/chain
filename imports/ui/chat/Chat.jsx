@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 import {Link} from "react-router-dom";
+
 import Items from "./items";
+import { MessageList } from './MessageList';
 
 /*CSS*/
 
@@ -151,11 +154,7 @@ export default class Chat extends Component {
                 <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
                 <Items {...this.props}/>
                 <Forma>
-                    <MessageHolder
-                    isFocused={this.sand.messageIsFocused}
-                    onClick={() => { this.handleOnFocusMessage() }} >
-                    </MessageHolder>
-                    <SendButton onClick={this.send}> <img src="/images/seta.png" style={{ width: "16px", marginRight: "10px" }} /><b>Send</b></SendButton>
+                    <MessageList/>
                 </Forma>
             </main>
         );

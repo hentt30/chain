@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
 
 const GoToLeft = styled.div`
 
@@ -51,7 +50,7 @@ export default class Item extends Component {
                 console.log(error);
             } else {
                 console.log(response.chatRoomId);
-                this.props.history.push(`direct-message/${ response.chatRoomId }`);
+                this.props.history.push(`chat/${ response.chatRoomId }`);
             }
         });
     }
