@@ -53,10 +53,10 @@ export default class Item extends Component {
                 let location = this.props.history.location.pathname;
 
                 if( location === '/chat' ){
-                    this.props.history.replace(`${this.props.history.location.pathname + '/' + response.chatRoomId }`);
+                    this.props.history.push(`${this.props.history.location.pathname + '/' + response.chatRoomId }`);
                 }
                 else {
-                    this.props.history.replace(`${ response.chatRoomId }`);
+                    this.props.history.push(`${ response.chatRoomId }`);
                 }
             }
         });

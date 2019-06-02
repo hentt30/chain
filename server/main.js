@@ -15,7 +15,6 @@ Meteor.startup(() => {
     for (i; i < quant; i++){
       UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: 0}});
     }
-
     return user;
   });
 
@@ -63,15 +62,34 @@ Meteor.startup(() => {
         chatRoomId: chatRoomId,
       };
     },
-    'addMessage': (text) => {
+    'addMessage': (text, chatRoomId) => {
+      const chatRoomMember = ChatRoomMembers.find({ chatRoomId: chatRoomId }).map(u => u.userId);
+      let myId = Meteor.userId();
+      let friendId = '';
+
+      if(myId === chatRoomMember[0]){
+        friendId = chatRoomMember[1];
+      } else {
+        friendId = chatRoomMember[0];
+      }
+
       let message = {
+        chatRoomId: chatRoomId,
+        senderId: myId,
+        receiverId: friendId,
+        message: text,
         time: new Date(),
-        text: text
       };
       Messages.insert(message);
     },
-    'findMessage': () => {
-      return Messages.find({}).fetch();
+    'findMessage': (chatRoomId) => {
+      let myId = Meteor.userId();
+      const myUser = Meteor.users.find({ _id: myId }).map(u => u.username)[0];
+
+      return {
+        data: Messages.find({chatRoomId: chatRoomId}).fetch(),
+        myUser: myUser,
+      };
     }
   });
 });

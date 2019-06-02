@@ -36,8 +36,8 @@ const SubmitButton = styled.button`
 export default class ChatRoom extends Component {
     constructor(props){
         super(props);
+        this.logout = this.logout.bind(this);
     }
-
 
     logout(e){
         e.preventDefault();
@@ -56,7 +56,7 @@ export default class ChatRoom extends Component {
                 <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
                 <Items {...this.props}/>
                 <Forma>
-                    <MessageList/>
+                    <MessageList {...this.props}/>
                 </Forma>
             </main>
         );

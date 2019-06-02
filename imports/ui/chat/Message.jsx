@@ -4,7 +4,8 @@ import moment from 'moment';
 
 export class Message extends React.Component{
     propTypes: {
-        message: React.PropTypes.object.isRequired
+        message: React.PropTypes.object.isRequired,
+        myUser: React.PropTypes.string.isRequired,
     };
 
     formatTime(time) {
@@ -13,7 +14,7 @@ export class Message extends React.Component{
 
     render() {
         return (
-            <li>{this.formatTime(this.props.message.time)} - {this.props.message.text}</li>
+            <li>{this.formatTime(this.props.message.time)} - {Meteor.users.find({ _id: this.props.message.senderId }).map(u => u.username)[0]} - {this.props.message.message}</li>
         );
     }
 }

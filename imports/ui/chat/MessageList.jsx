@@ -9,24 +9,24 @@ export class MessageList extends React.Component{
         this.state = {
             mixins: [ReactMeteorData],
             text: '',
-            messages: undefined
+            messages: undefined,
         };
     }
 
     renderMessages = () => {
         let messagesList;
+        let chatRoomId = this.props.match.params.chatRoomId;
 
-        Meteor.call('findMessage', (error, result) => {
+        Meteor.call('findMessage', chatRoomId, (error, result) => {
             if (!error) {
-                this.setState({messages: result});
+                this.setState({messages: result.data, myUser: result.myUser});
             }
         });
-
 
         if(this.state.messages !== undefined) {
             messagesList = (
                 this.state.messages.map((message) => (
-                    <Message key={message._id} message={message}/>
+                    <Message key={message._id} message={message} myUser={this.state.myUser}/>
                 ))
             );
         } else {
@@ -42,8 +42,9 @@ export class MessageList extends React.Component{
     };
 
     handleMessage = () => {
-        let text = this.state.text;
-        Meteor.call('addMessage', text);
+        let chatRoomId = this.props.match.params.chatRoomId;
+
+        Meteor.call('addMessage', this.state.text, chatRoomId);
         this.state.text = '';
     };
 
