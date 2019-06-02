@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import {MessageList} from "./MessageList";
+import {SuggestionSubject} from './SuggestionSubject';
 import Items from "./items";
 import {Link} from "react-router-dom";
 
@@ -56,6 +57,7 @@ export default class ChatRoom extends Component {
                 <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
                 <Items {...this.props}/>
                 <Forma>
+                    <SuggestionSubject {...this.props}/>
                     <MessageList {...this.props}/>
                 </Forma>
             </main>
