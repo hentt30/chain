@@ -20,3 +20,4 @@ while (i < allSubjects[0].length) {
 }
 
 export const quant = Subjects.find().count();
+export const subjects = Subjects.find({}).fetch();

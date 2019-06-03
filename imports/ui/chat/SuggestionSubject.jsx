@@ -37,7 +37,7 @@ export class SuggestionSubject extends React.Component{
         return (
             <div className="container">
                 <header>
-                    <h2>Subject</h2>
+                    <h2>Converse Sobre...</h2>
                 </header>
 
                 {this.renderSubject()}

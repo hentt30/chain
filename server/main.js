@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 
-import {quant, UsersSubjects} from '../imports/api/subjects/subjects.js';
+import {quant, UsersSubjects, subjects} from '../imports/api/subjects/subjects.js';
 import {Profiles} from '../lib/collections.js';
 import {Messages} from '../lib/collections.js';
 import {ChatRoomMembers} from '../lib/collections.js';
@@ -33,7 +33,9 @@ Meteor.startup(() => {
   });
 
   Meteor.methods({
-    'insertUser': newUserData => Accounts.createUser(newUserData),
+    'insertUser': newUserData => {
+      Accounts.createUser(newUserData);
+    },
 
     'insertProfile': newUserData => {
       Profiles.insert({
@@ -105,8 +107,21 @@ Meteor.startup(() => {
 
     'subjectMatch': (chatRoomId) => {
       let [myId, friendId] = idMembers(chatRoomId);
+      let subjectMatch = [], mySubjects = [], friendSubjects = [];
 
-      return 'sucesso';
+      for(i = 0; i < quant; i++) {
+        mySubjects[i] = UsersSubjects.find({ userId: myId }).map(u => u[i][0]);
+        friendSubjects[i] = UsersSubjects.find({ userId: friendId }).map(u => u[i][0]);
+        subjectMatch[i] = [i , mySubjects[i] + friendSubjects[i] - 0.75*Math.abs(mySubjects[i]-friendSubjects[i])];
+      }
+
+      subjectMatch.sort((a, b) => {
+        return a[1]<b[1];
+      });
+
+      let s = subjectMatch[0][0];
+
+      return subjects[s][s][0];
     }
   });
 });

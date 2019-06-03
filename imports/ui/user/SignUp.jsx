@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
+import {Accounts} from 'meteor/accounts-base';
 
 /*CSS*/
 
@@ -166,7 +167,7 @@ export default class SignUp extends Component {
             lastName: '',
             username: '',
             error: '',
-            redirect: false,
+            accountCreated: false,
             emailIsFocused: false,
             passwordIsFocused: false,
             firstNameIsFocused: false,
@@ -236,21 +237,29 @@ export default class SignUp extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
         };
+
         if (newUserData.email !== '' && newUserData.password !== '' && newUserData.username !== '' && newUserData.firstName !== '' && newUserData.lastName !== ''){
             console.log(newUserData);
+            Accounts.createUser(newUserData);
             Meteor.call('insertUser', newUserData, (error) => {
                 if (error) {
+                    console.log(error);
                     this.setState({error: error.reason});
                 } else {
-                    Meteor.loginWithPassword(this.state.email, this.state.password);
-                    this.props.history.push('/signup-subjects');
                     Meteor.call('insertProfile', newUserData);
+                    this.state.accountCreated = true;
+                    console.log('Created Account');
                 }
             });
-            console.log('Created Account');
             console.log('Logged!');
         } else {
             this.setState({ error: 'Please provide all fields.' });
+        }
+    };
+
+    loginRoute = () => {
+        if(Meteor.userId()){
+            Meteor.userId() ? this.props.history.push('/signup-subjects') : '';
         }
     };
 
@@ -328,6 +337,7 @@ export default class SignUp extends Component {
                             </PutInSameLineWrapper>
                         </StayAway2>
                         <SubmitButton onClick={this.createAccount}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                        { this.loginRoute() }
                     </StayAway1>
                 </CenterWrapper>
                 <LittleText>Thank you for choosing us. Enjoy it!</LittleText>
