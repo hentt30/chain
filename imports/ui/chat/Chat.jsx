@@ -3,14 +3,21 @@ import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import {Link} from "react-router-dom";
+import Home from "../common/Home";
 import Items from "./items";
+import Logout from "../common/Logout";
 
 /*CSS*/
 
-const SubmitButton = styled.button`
+const WrapperButton = styled.div`
+    height: 24px;
+    width: 128px;
+`;
 
+const SubmitButton = styled.button`
     color: black;
-    width: 8%;
+    height: 24px;
+    width: 128px;
     margin: 0px;
     margin-top:0px;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -26,6 +33,24 @@ const SubmitButton = styled.button`
     color: white;
     float:right;
     }   
+`;
+
+const WrapperItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 256px;
+    
+`;
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`;
+
+const TitleWrapper = styled.div`
+    text-align: center;
 `;
 
 export default class Chat extends Component {
@@ -70,8 +95,16 @@ export default class Chat extends Component {
     render() {
         return (
             <main>
-                <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
-                <Items {...this.props}/>
+                <TitleWrapper>
+                   <p>Escolha alguém para conversar!</p>
+                </TitleWrapper>
+            <Wrapper>
+                <Home {...this.props}/>
+                <WrapperItems>
+                    <Items {...this.props}/>
+                </WrapperItems>
+                <Logout {...this.props}/>
+            </Wrapper>
             </main>
         );
     }

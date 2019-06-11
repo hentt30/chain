@@ -1,38 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
-const GoToLeft = styled.div`
-
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-start;
-    align-items:center;
-    padding:100px;
-    margin-right:auto;
-`;
-
-const Logo = styled.img`
-
-    width:28px;
-    height:28px;
-    border-radius: 25px;
-`;
-
-const Holder2 = styled.div`
-    width: 1%;
-    display: flex;
-    flex-flow: column;
-    align-items:center;
-    justify-conent: flex-end;
-`;
-
-const Name = styled.button`
-    margin-bottom: 15px;
-    font-size:16px;
-    margin-left: 5px;
-    color:#0360ad;
-`;
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export default class Item extends Component {
     constructor(props) {
@@ -65,9 +34,9 @@ export default class Item extends Component {
     render(){
         const { _id, username } = this.props.user;
         return(
-            <Holder2>
-                <Name onClick={this.startChatWithUser.bind(this, Meteor.userId(), _id)}> { username } </Name>
-            </Holder2>
+            <ListItem button onClick={this.startChatWithUser.bind(this, Meteor.userId(), _id)}>
+                <ListItemText> { username } </ListItemText>
+            </ListItem>
             );
     }
 }

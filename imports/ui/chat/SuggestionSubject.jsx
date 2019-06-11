@@ -23,7 +23,7 @@ export class SuggestionSubject extends React.Component{
 
         if(this.state.subject !== undefined) {
             suggestionSubject = (
-                <p> {this.state.subject} </p>
+                <p> Converse sobre {this.state.subject[0]} ou {this.state.subject[1]} </p>
             );
         } else {
             suggestionSubject = (
@@ -35,14 +35,11 @@ export class SuggestionSubject extends React.Component{
 
     render() {
         return (
-            <div className="container">
-                <header>
-                    <h2>Converse Sobre...</h2>
-                </header>
+            <main>
 
-                {this.renderSubject()}
+                <p>{this.renderSubject()}</p>
 
-            </div>
+            </main>
         );
     }
 }

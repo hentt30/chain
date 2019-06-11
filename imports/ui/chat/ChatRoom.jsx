@@ -5,33 +5,32 @@ import { Mongo } from 'meteor/mongo';
 import {MessageList} from "./MessageList";
 import {SuggestionSubject} from './SuggestionSubject';
 import Items from "./items";
-import {Link} from "react-router-dom";
+import Home from "../common/Home";
+import Logout from "../common/Logout";
 
 /*CSS*/
 
-const Forma = styled.div`
-    display:inline-block;
+const SideBySide = styled.div`
+    display: flex;
+    justify-content: center; 
 `;
 
-const SubmitButton = styled.button`
+const SubjectWrapper = styled.div`
+    text-align: center;
+`;
 
-    color: black;
-    width: 8%;
-    margin: 0px;
-    margin-top:0px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    background-color: #ccc;
-    border-radius:20px;
-    vertical-align: center;
-    text-align:center;
-    float:right;
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`;
 
-    &:hover {
-    background-color: #0360ad;
-    color: white;
-    float:right;
-    }   
+const WrapperItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 256px;
+    
 `;
 
 export default class ChatRoom extends Component {
@@ -54,12 +53,19 @@ export default class ChatRoom extends Component {
     render() {
         return (
             <main>
-                <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
-                <Items {...this.props}/>
-                <Forma>
-                    <SuggestionSubject {...this.props}/>
+            <SubjectWrapper>
+                <SuggestionSubject {...this.props}/>
+            </SubjectWrapper>
+            <Wrapper>
+                <Home {...this.props}/>
+                <SideBySide>
+                    <WrapperItems>
+                        <Items {...this.props}/>
+                    </WrapperItems>
                     <MessageList {...this.props}/>
-                </Forma>
+                </SideBySide>
+                <Logout {...this.props}/>
+            </Wrapper>
             </main>
         );
     }

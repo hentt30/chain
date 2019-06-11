@@ -12,6 +12,7 @@ import Chat from './ui/chat/Chat.jsx';
 import ChatRoom from './ui/chat/ChatRoom.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
 import Login from './ui/user/Login.jsx';
+import PublicRoute from "./ui/PublicRoute";
 import PrivateRoute from "./ui/PrivateRoute";
 
 const browserHistory = createHistory();
@@ -19,9 +20,9 @@ const browserHistory = createHistory();
 export const renderRoutes = () => (
     <Router history={browserHistory}>
         <Switch>
-            <Route exact path="/" component={App}/>
-            <Route exact path="/signup" component={SignUp}/>
-            <Route exact path="/login" component={Login}/>
+            <PublicRoute exact path="/" component={App}/>
+            <PublicRoute exact path="/signup" component={SignUp}/>
+            <PublicRoute exact path="/login" component={Login}/>
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
             <PrivateRoute exact path="/chat/:chatRoomId" component={ChatRoom}/>

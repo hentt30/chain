@@ -1,7 +1,29 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import TextField from '@material-ui/core/TextField';
 import { Message } from './Message';
 import { Mongo } from 'meteor/mongo';
+import Button from "@material-ui/core/Button";
+import styled from "styled-components";
+
+const MessageListBox = styled.div`
+`;
+
+const MessageBox = styled.div`
+    height: 576px;
+    width: 512px;
+    overflow-y: scroll;
+    text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    word-break: break-word;
+`;
+
+const TextBox = styled.div`
+    display: flex;
+    justify-content: center; 
+`;
 
 export class MessageList extends React.Component{
     constructor(props) {
@@ -10,8 +32,21 @@ export class MessageList extends React.Component{
             mixins: [ReactMeteorData],
             text: '',
             messages: undefined,
+            result: 0,
         };
     }
+
+    componentDidUpdate = () => {
+        this.state.result = 0;
+    };
+
+    scrollDown = () => {
+        let messageDiv = document.getElementById("message_box");
+        if(this.state.result < 3 && messageDiv !== null){
+            messageDiv.scrollTop = 2*messageDiv.scrollHeight;
+            this.state.result += 1;
+        }
+    };
 
     renderMessages = () => {
         let messagesList;
@@ -46,6 +81,7 @@ export class MessageList extends React.Component{
 
         Meteor.call('addMessage', this.state.text, chatRoomId);
         this.state.text = '';
+        this.state.result = 0;
     };
 
     enterPress = event => {
@@ -56,17 +92,28 @@ export class MessageList extends React.Component{
     };
 
     render() {
+        const classes = {
+            button: {
+                margin: '8px',
+                marginLeft: '8px',
+            },
+        };
+
         return (
-            <div className="container">
-                <header>
-                    <h2>Messages</h2>
-                </header>
+            <MessageListBox>
+                <MessageBox id="message_box">
+                    {this.renderMessages()}
+                </MessageBox>
 
-                <input placeholder="Enter message..." value={this.state.text} onKeyPress={this.enterPress} onChange={this.handleChangeMessage}/>
-                <button onClick={this.handleMessage}>Enter</button>
+                {this.scrollDown()}
 
-                {this.renderMessages()}
-            </div>
+                <TextBox>
+                    <TextField variant="outlined" placeholder="Enter message..." value={this.state.text} onKeyPress={this.enterPress} onChange={this.handleChangeMessage}/>
+                    <Button onClick={this.handleMessage} variant="contained" className={classes.button}>
+                        Enviar
+                    </Button>
+                </TextBox>
+            </MessageListBox>
         );
     }
 }

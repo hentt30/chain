@@ -9,12 +9,12 @@ const quant_tmp = Subjects.find().count();
 
 let i = quant_tmp;
 
-while (i < allSubjects[0].length) {
+while (i < allSubjects.length) {
     Subjects.insert({
-        [i]: [ allSubjects[0][i], allSubjects[1][i] ]
+        [i]: [ allSubjects[i] ]
     });
 
-    UsersSubjects.update({}, {$addToSet: {[i]: 0}});
+    UsersSubjects.update({}, {$addToSet: {[i]: [parseFloat(0)]}});
 
     i++;
 }

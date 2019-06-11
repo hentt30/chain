@@ -46,7 +46,13 @@ Meteor.startup(() => {
     },
 
     'insertUserSubject': (SubjectData, i) => {
-      UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [SubjectData]}});
+      let mySubjects = [];
+      if(quant > i && i >= 0){
+        mySubjects[i] = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0]);
+        console.log(mySubjects[i]);
+        mySubjects[i] = parseFloat(mySubjects[i]) + parseFloat(SubjectData);
+        UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [mySubjects[i]]}});
+      }
     },
 
     'usersAll': () => Meteor.users.find({_id: {$ne: Meteor.userId()}}, {sort: {createdAt: -1}}).fetch(),
@@ -105,6 +111,14 @@ Meteor.startup(() => {
       };
     },
 
+    'numMessage': (chatRoomId, numMessage) => {
+      let newNum = Messages.find({chatRoomId: chatRoomId}).count();
+      return {
+        num: newNum,
+        new: newNum - numMessage,
+      }
+    },
+
     'subjectMatch': (chatRoomId) => {
       let [myId, friendId] = idMembers(chatRoomId);
       let subjectMatch = [], mySubjects = [], friendSubjects = [];
@@ -112,16 +126,15 @@ Meteor.startup(() => {
       for(i = 0; i < quant; i++) {
         mySubjects[i] = UsersSubjects.find({ userId: myId }).map(u => u[i][0]);
         friendSubjects[i] = UsersSubjects.find({ userId: friendId }).map(u => u[i][0]);
-        subjectMatch[i] = [i , mySubjects[i] + friendSubjects[i] - 0.75*Math.abs(mySubjects[i]-friendSubjects[i])];
+        subjectMatch[i] = [i , parseFloat(mySubjects[i]) + parseFloat(friendSubjects[i]) - 0.75*Math.abs(parseFloat(mySubjects[i])-parseFloat(friendSubjects[i]))];
       }
 
       subjectMatch.sort((a, b) => {
-        return a[1]<b[1];
+        return a[1]<b[1] ? 1 : -1;
       });
 
-      let s = subjectMatch[0][0];
-
-      return subjects[s][s][0];
+      let s = [subjectMatch[0][0], subjectMatch[1][0], subjectMatch[2][0]];
+      return [subjects[s[0]][s[0]][0], subjects[s[1]][s[1]][0], subjects[s[2]][s[2]][0]];
     }
   });
 });
