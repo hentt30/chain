@@ -13,7 +13,6 @@ const WrapperMessage = styled.div`
 export class Message extends React.Component{
     propTypes: {
         message: React.PropTypes.object.isRequired,
-        myUser: React.PropTypes.string.isRequired,
     };
 
     formatTime(time) {
@@ -26,7 +25,7 @@ export class Message extends React.Component{
                 <main>
                 <WrapperMessage>
                     <font size="1">{this.formatTime(this.props.message.time)} </font>
-                    <p>{this.props.message.message} :{Meteor.users.find({ _id: this.props.message.senderId }).map(u => u.username)[0]}</p>
+                    <p>{this.props.message.message}</p>
                 </WrapperMessage>
                   <Divider/>
                 </main>
@@ -36,7 +35,7 @@ export class Message extends React.Component{
             return (
                 <main>
                 <WrapperMessage>
-                    <p>{Meteor.users.find({ _id: this.props.message.senderId }).map(u => u.username)[0]}: {this.props.message.message}</p>
+                    <p>{this.props.message.message}</p>
                     <font size="1">{this.formatTime(this.props.message.time)} </font>
                 </WrapperMessage>
                    <Divider/>

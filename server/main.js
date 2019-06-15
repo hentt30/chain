@@ -111,14 +111,6 @@ Meteor.startup(() => {
       };
     },
 
-    'numMessage': (chatRoomId, numMessage) => {
-      let newNum = Messages.find({chatRoomId: chatRoomId}).count();
-      return {
-        num: newNum,
-        new: newNum - numMessage,
-      }
-    },
-
     'subjectMatch': (chatRoomId) => {
       let [myId, friendId] = idMembers(chatRoomId);
       let subjectMatch = [], mySubjects = [], friendSubjects = [];
@@ -137,4 +129,8 @@ Meteor.startup(() => {
       return [subjects[s[0]][s[0]][0], subjects[s[1]][s[1]][0], subjects[s[2]][s[2]][0]];
     }
   });
+});
+
+Meteor.publish('pubMessage', () => {
+  return Messages.find({});
 });

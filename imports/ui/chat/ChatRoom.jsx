@@ -7,6 +7,8 @@ import {SuggestionSubject} from './SuggestionSubject';
 import Items from "./items";
 import Home from "../common/Home";
 import Logout from "../common/Logout";
+import {Messages} from "../../../lib/collections";
+import {TextContainer} from "./TextContainer";
 
 /*CSS*/
 
@@ -25,6 +27,12 @@ const Wrapper = styled.div`
     justify-content: space-around;
 `;
 
+const WrapperChat = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+
 const WrapperItems = styled.div`
     display: flex;
     flex-direction: column;
@@ -32,6 +40,8 @@ const WrapperItems = styled.div`
     width: 256px;
     
 `;
+
+Meteor.subscribe('pubMessage');
 
 export default class ChatRoom extends Component {
     constructor(props){
@@ -62,7 +72,10 @@ export default class ChatRoom extends Component {
                     <WrapperItems>
                         <Items {...this.props}/>
                     </WrapperItems>
-                    <MessageList {...this.props}/>
+                    <WrapperChat>
+                        <MessageList {...this.props}/>
+                        <TextContainer {...this.props}/>
+                    </WrapperChat>
                 </SideBySide>
                 <Logout {...this.props}/>
             </Wrapper>

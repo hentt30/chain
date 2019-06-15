@@ -8,18 +8,24 @@ export class SuggestionSubject extends React.Component{
         this.state = {
             mixins: [ReactMeteorData],
             subject: undefined,
+            chatRoomId: undefined,
+            suggestionSubject: 'Please Wait...',
         };
     }
 
     renderSubject = () => {
-        let suggestionSubject;
+        let suggestionSubject = 'Please Wait...';
         let chatRoomId = this.props.match.params.chatRoomId;
-
-        Meteor.call('subjectMatch', chatRoomId, (error, result) => {
-            if (!error) {
-                this.setState({subject: result});
-            }
+        Tracker.autorun(() => {
+            Meteor.subscribe('findMessage', chatRoomId);
         });
+        if (this.state.suggestionSubject === suggestionSubject || this.state.chatRoomId !== chatRoomId) {
+            Meteor.call('subjectMatch', chatRoomId, (error, result) => {
+                if (!error) {
+                    this.setState({subject: result, chatRoomId: chatRoomId});
+                }
+            });
+        }
 
         if(this.state.subject !== undefined) {
             suggestionSubject = (
@@ -30,14 +36,16 @@ export class SuggestionSubject extends React.Component{
                 <p> Please wait...</p>
             )
         }
-        return suggestionSubject;
+        this.state.suggestionSubject = suggestionSubject;
     };
 
     render() {
         return (
             <main>
 
-                <p>{this.renderSubject()}</p>
+                {this.renderSubject()}
+
+                {this.state.suggestionSubject}
 
             </main>
         );
