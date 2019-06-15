@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 // route components
-import App from './ui/App.jsx';
+import Home from './ui/Home.jsx';
 import SignUp from './ui/user/SignUp.jsx';
 import SignUpSubjects from './ui/user/subjects/SignUpSubjects.jsx';
 import Chat from './ui/chat/Chat.jsx';
@@ -20,7 +20,7 @@ const browserHistory = createHistory();
 export const renderRoutes = () => (
     <Router history={browserHistory}>
         <Switch>
-            <PublicRoute exact path="/" component={App}/>
+            <PublicRoute exact path="/" component={Home}/>
             <PublicRoute exact path="/signup" component={SignUp}/>
             <PublicRoute exact path="/login" component={Login}/>
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
