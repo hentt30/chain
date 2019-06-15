@@ -1,32 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import {Link} from "react-router-dom";
 import React, {Component} from "react";
 import styled from "styled-components";
+import {StyledFab, StyledNavigationIcon} from './StandardButtonStyle';
 
 const WrapperButton = styled.div`
     height: 24px;
     width: 128px;
-`;
-
-const SubmitButton = styled.button`
-    color: black;
-    height: 24px;
-    width: 128px;
-    margin: 0px;
-    margin-top:0px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    background-color: #ccc;
-    border-radius:20px;
-    vertical-align: center;
-    text-align:center;
-    float:right;
-
-    &:hover {
-    background-color: #0360ad;
-    color: white;
-    float:right;
-    }   
 `;
 
 export default class Logout extends Component {
@@ -41,7 +20,7 @@ export default class Logout extends Component {
             if (err) {
                 console.log( err.reason );
             } else {
-                this.props.history.push('/login');
+                this.props.history.push('/');
             }
         });
     };
@@ -49,7 +28,10 @@ export default class Logout extends Component {
     render() {
         return (
             <WrapperButton>
-                <Link to="#"><SubmitButton onClick={this.logout}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Logout</SubmitButton></Link>
+                <StyledFab variant="extended" aria-label="Delete" onClick ={this.logout}>
+                    <StyledNavigationIcon/>
+                    Logout
+                </StyledFab>
             </WrapperButton>
         );
     }

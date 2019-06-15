@@ -11,7 +11,6 @@ import SignUpSubjects from './ui/user/subjects/SignUpSubjects.jsx';
 import Chat from './ui/chat/Chat.jsx';
 import ChatRoom from './ui/chat/ChatRoom.jsx';
 import PageNotFound from './ui/PageNotFound.jsx';
-import Login from './ui/user/Login.jsx';
 import PublicRoute from "./ui/PublicRoute";
 import PrivateRoute from "./ui/PrivateRoute";
 
@@ -22,7 +21,6 @@ export const renderRoutes = () => (
         <Switch>
             <PublicRoute exact path="/" component={Home}/>
             <PublicRoute exact path="/signup" component={SignUp}/>
-            <PublicRoute exact path="/login" component={Login}/>
             <PrivateRoute exact path="/signup-subjects" component={SignUpSubjects}/>
             <PrivateRoute exact path="/chat" component={Chat}/>
             <PrivateRoute exact path="/chat/:chatRoomId" component={ChatRoom}/>

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import {Link} from "react-router-dom";
 import React, {Component} from "react";
 import styled from "styled-components";
+import {StyledFab, StyledNavigationIcon} from './StandardButtonStyle';
 
 const WrapperButton = styled.div`
     height: 24px;
@@ -43,9 +43,11 @@ export default class Logout extends Component {
     render() {
         return (
             <WrapperButton>
-                <Link to="#"><SubmitButton onClick={this.home}> <img src="/images/login.png" style={{ width: "16px", marginRight: "10px" }} />Home</SubmitButton></Link>
+                <StyledFab variant="extended" aria-label="Delete" onClick ={this.home}>
+                    <StyledNavigationIcon/>
+                    Home
+                </StyledFab>
             </WrapperButton>
         );
     }
-
 }
