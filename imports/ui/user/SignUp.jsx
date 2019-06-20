@@ -1,160 +1,56 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import {Accounts} from 'meteor/accounts-base';
+import { Accounts } from 'meteor/accounts-base';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Home from '../common/Home';
+import {Link} from "react-router-dom";
 
+const StyledAvatar = withStyles({
+    root: {
+        margin: '8 px',
+        backgroundColor: '#F1EAEA',
+    },
+})(Avatar)
+
+const StyledTypography = withStyles({
+    root: {
+        fontFamily: 'Monospace',
+        fontSize: '30px',
+    },
+})(Typography)
+
+const StyledButton = withStyles({
+    root: {
+        marginTop: '24px',
+        marginLeft: '0px',
+        marginLeft: '0px',
+        marginBottom: '16px',
+
+    },
+})(Button)
 /*CSS*/
-
-const Title = styled.h1`
-    text-align: center;
-    font-size: 2.0em;
-    color: #0360ad;
-`;
-
-const SubTitle = styled.h1`
-     text-align: center;
-    font-size: 1.0em;
-    color: #0360ad;
-    margin-bottom: 50px;
-`;
-
-const WrapperSpanInput = styled.div`
-
-    position: relative;
-    margin: 10px;
-`;
-
-const EmailHolder = styled.input`
-    
-    color: #0360ad;
-    width: 200%;
-    padding:2px;
-    border: 0px;
-    border-bottom: 1px solid #0360ad;
-    &:focus{
-        outline:none;
-    }
-`;
-
-const FirstNameHolder = styled.input`
-    
-    color: #0360ad;
-    width: 200%;
-    padding:2px;
-    border: 0px;
-    border-bottom: 1px solid #0360ad;
-    &:focus{
-        outline:none;
-    }
-`;
-
-const LastNameHolder = styled.input`
-    
-    color: #0360ad;
-    width: 200%;
-    padding:2px;
-    border: 0px;
-    border-bottom: 1px solid #0360ad;
-    &:focus{
-        outline:none;
-    }
-`;
-
-const UsernameHolder = styled.input`
-    
-    color: #0360ad;
-    width: 200%;
-    padding:2px;
-    border: 0px;
-    border-bottom: 1px solid #0360ad;
-    &:focus{
-        outline:none;
-    }
-`;
-
-const TitleInInput = styled.span`
-
-    position: absolute;
-    left: 2px;
-    transition: 0.8s ease;
-    color: ${props => (props.isFocused ? "#0360ad" : "#a2a6ad")};
-    top: ${props => (props.isFocused ? "-15px" : "auto")};
-    font-size: ${props => (props.isFocused ? "0.75em" : "auto")};
-`;
-
-const ImageNextToInput = styled.img`
-
-    width:16px;
-    padding:0px;
-    margin:0px;
-`;
-
-const PasswordHolder = styled.input`
-    padding:2px;
-    width: 200%;
-    border: 0px;
-    border-bottom: 1px solid #0360ad;
-    color:#0360ad;
-
-    &:focus{
-        outline:none;
-    }
-`;
-
-const SubmitButton = styled.button`
-
-    color: black;
-    width: 100%;
-    margin: 0px;
-    margin-top:0px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    background-color: #ccc;
-    border-radius:8px;
-    vertical-align: center;
-    text-align:center;
-
-    &:hover {
-    background-color: #0360ad;
-    color: white;
-    }   
-`;
-
-const CenterWrapper = styled.div`
-
+const Div = styled.div`
+    margin-top : 100px;
     display: flex;
     flex-direction: column;
     align-items:center;
-    justify-content:center;
+    
+`;
+const Form = styled.div`
+        width: 100%;
+        margin-top: 24px
 `;
 
-const StayAway1 = styled.div`
-
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
-const StayAway2 = styled.div`
-
-    width:200%;
-    margin-bottom: 50px;
-`;
-
-const PutInSameLineWrapper = styled.div`
-
-    display: flex;
-    flex-direction: row;
-`;
-
-const LittleText = styled.a`
-
-    font-size: 10px;
-    text-algin:center;
-    color:#0360ad;
-`;
 
 export default class SignUp extends Component {
 
@@ -168,18 +64,7 @@ export default class SignUp extends Component {
             username: '',
             error: '',
             accountCreated: false,
-            emailIsFocused: false,
-            passwordIsFocused: false,
-            firstNameIsFocused: false,
-            lastNameIsFocused: false,
-            usernameIsFocused: false
         };
-
-        this.handleOnFocusEmail = this.handleOnFocusEmail.bind(this);
-        this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
-        this.handleOnFocusFirstName = this.handleOnFocusFirstName.bind(this);
-        this.handleOnFocusLastName = this.handleOnFocusLastName.bind(this);
-        this.handleOnFocusUsername = this.handleOnFocusUsername.bind(this);
     }
 
 
@@ -205,29 +90,7 @@ export default class SignUp extends Component {
         this.setState({ username: event.target.value });
     };
 
-    handleOnFocusEmail() {
-        this.setState({ emailIsFocused: true, });
-    }
-
-    handleOnFocusPassword() {
-        this.setState({ passwordIsFocused: true, });
-    }
-
-    handleOnFocusFirstName() {
-        this.setState({ firstNameIsFocused: true, });
-    }
-
-    handleOnFocusLastName() {
-        this.setState({ lastNameIsFocused: true, });
-    }
-
-    handleOnFocusUsername() {
-        this.setState({ usernameIsFocused: true, });
-    }
-
-    createAccount = (event) => {
-        event.preventDefault ();
-
+    createAccount = () => {
         console.log('E - submit #form-signup');
 
         let newUserData = {
@@ -238,13 +101,13 @@ export default class SignUp extends Component {
             lastName: this.state.lastName,
         };
 
-        if (newUserData.email !== '' && newUserData.password !== '' && newUserData.username !== '' && newUserData.firstName !== '' && newUserData.lastName !== ''){
+        if (newUserData.email !== '' && newUserData.password !== '' && newUserData.username !== '' && newUserData.firstName !== '' && newUserData.lastName !== '') {
             console.log(newUserData);
             Accounts.createUser(newUserData);
             Meteor.call('insertUser', newUserData, (error) => {
                 if (error) {
                     console.log(error);
-                    this.setState({error: error.reason});
+                    this.setState({ error: error.reason });
                 } else {
                     Meteor.call('insertProfile', newUserData);
                     this.state.accountCreated = true;
@@ -257,91 +120,136 @@ export default class SignUp extends Component {
         }
     };
 
+    enterPress = event => {
+        let code = event.key;
+        if(code === 'Enter'){
+            this.createAccount();
+        }
+    };
+
     loginRoute = () => {
-        if(Meteor.userId()){
+        if (Meteor.userId()) {
             Meteor.userId() ? this.props.history.push('/signup-subjects') : '';
         }
     };
 
+
+
     render() {
+
         return (
-            <CenterWrapper>
-                <Title>Chain</Title>
-                <SubTitle>Join us!</SubTitle>
-                <CenterWrapper>
-                    { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
-                    <StayAway1>
-                        <StayAway2>
-                            <PutInSameLineWrapper>
-                                <WrapperSpanInput>
-                                    <TitleInInput
-                                        isFocused={this.state.firstNameIsFocused}
-                                        onClick={() => { this.handleOnFocusFirstName() }}
-                                    >
-                                        <ImageNextToInput src="/images/user.png" /> First-Name
-                                    </TitleInInput>
-                                    <FirstNameHolder id="firstName" type="firstName" name="firstName" onFocus={() => { this.handleOnFocusFirstName() }} value={this.state.firstName} onChange={this.handleChangeFirstName}/>
-                                </WrapperSpanInput>
-                            </PutInSameLineWrapper>
-                        </StayAway2>
-                        <StayAway2>
-                            <PutInSameLineWrapper>
-                                <WrapperSpanInput>
-                                    <TitleInInput
-                                        isFocused={this.state.lastNameIsFocused}
-                                        onClick={() => { this.handleOnFocusLastName() }}
-                                    >
-                                        <ImageNextToInput src="/images/user.png" /> Last-Name
-                                    </TitleInInput>
-                                    <LastNameHolder id="lastName" type="lastName" name="lastName" onFocus={() => { this.handleOnFocusLastName() }} value={this.state.lastName} onChange={this.handleChangeLastName}/>
-                                </WrapperSpanInput>
-                            </PutInSameLineWrapper>
-                        </StayAway2>
-                        <StayAway2>
-                            <PutInSameLineWrapper>
-                                <WrapperSpanInput>
-                                    <TitleInInput
-                                        isFocused={this.state.usernameIsFocused}
-                                        onClick={() => { this.handleOnFocusUsername() }}
-                                    >
-                                        <ImageNextToInput src="/images/user.png" /> Username
-                                    </TitleInInput>
-                                    <UsernameHolder id="username" type="username" name="username" onFocus={() => { this.handleOnFocusUsername() }} value={this.state.username} onChange={this.handleChangeUsername}/>
-                                </WrapperSpanInput>
-                            </PutInSameLineWrapper>
-                        </StayAway2>
-                        <StayAway2>
-                            <PutInSameLineWrapper>
-                                <WrapperSpanInput>
-                                    <TitleInInput
-                                        isFocused={this.state.emailIsFocused}
-                                        onClick={() => { this.handleOnFocusEmail() }}
-                                    >
-                                        <ImageNextToInput src="/images/user.png" /> Email
-                                    </TitleInInput>
-                                    <EmailHolder id="email" type="email" name="email" onFocus={() => { this.handleOnFocusEmail() }} value={this.state.email} onChange={this.handleChangeEmail}/>
-                                </WrapperSpanInput>
-                            </PutInSameLineWrapper>
-                        </StayAway2>
-                        <StayAway2>
-                            <PutInSameLineWrapper>
-                                <WrapperSpanInput>
-                                    <TitleInInput
-                                        isFocused={this.state.passwordIsFocused}
-                                        onClick={() => { this.handleOnFocusPassword() }}
-                                    >
-                                        <ImageNextToInput src="/images/lock.png" /> Password
-                                    </TitleInInput>
-                                    <PasswordHolder id="password" type="password" name="password" onFocus={() => { this.handleOnFocusPassword() }} value={this.state.password} onChange={this.handleChangePassword}/>
-                                </WrapperSpanInput>
-                            </PutInSameLineWrapper>
-                        </StayAway2>
-                        <SubmitButton onClick={this.createAccount}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
-                        { this.loginRoute() }
-                    </StayAway1>
-                </CenterWrapper>
-                <LittleText>Thank you for choosing us. Enjoy it!</LittleText>
-            </CenterWrapper>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Div>
+                    <StyledAvatar>
+                        <LockOutlinedIcon />
+                    </StyledAvatar>
+                    <StyledTypography component="h1" variant="h5">
+                        Sign up
+                </StyledTypography>
+                    <Form>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="fname"
+                                    name="firstName"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    value = {this.state.firstName}
+                                    onChange = {this.handleChangeFirstName}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="lname"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    value = {this.state.lastName}
+                                    onChange = {this.handleChangeLastName}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="username"
+                                    label="Username"
+                                    name="username"
+                                    autoComplete="username"
+                                    value = {this.state.username}
+                                    onChange = {this.handleChangeUsername}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    value = {this.state.email}
+                                    onChange = {this.handleChangeEmail}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value = {this.state.password}
+                                    onChange = {this.handleChangePassword}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+
+                        </Grid>
+                        <StyledButton
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            onClick={this.createAccount}
+                        >
+                            Sign Up
+                        </StyledButton>
+                    </Form>
+                    {this.loginRoute()}
+                </Div>
+                <Box mt={5}>
+                    <Typography variant="body2" color="textSecondary" align="center">
+                        <Link to="/"> Volte para o login! </Link>
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" align="center">
+
+                        {'Built with love  by the chAIn'}
+                        
+                        {' team.'}
+                    </Typography>
+                </Box>
+
+
+            </Container>
+
+
         );
     }
 }
