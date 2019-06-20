@@ -49,7 +49,6 @@ Meteor.startup(() => {
       let mySubjects = [];
       if(quant > i && i >= 0){
         mySubjects[i] = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0]);
-        console.log(mySubjects[i]);
         mySubjects[i] = parseFloat(mySubjects[i]) + parseFloat(SubjectData);
         UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [mySubjects[i]]}});
       }

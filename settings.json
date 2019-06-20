@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+     "env": {
+       "MONGO_URL": "mongodb+srv://rubensgaguiar:kFofH4gKKQwOCRYS@chaincluster-fvzzn.mongodb.net/test?retryWrites=true&w=majority"
+     }
+   }
+}
+
