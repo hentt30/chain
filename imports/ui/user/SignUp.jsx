@@ -6,16 +6,14 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { ThemeProvider } from '@material-ui/styles';
+import Home from '../common/Home';
+import {Link} from "react-router-dom";
 
 const StyledAvatar = withStyles({
     root: {
@@ -66,18 +64,7 @@ export default class SignUp extends Component {
             username: '',
             error: '',
             accountCreated: false,
-            emailIsFocused: false,
-            passwordIsFocused: false,
-            firstNameIsFocused: false,
-            lastNameIsFocused: false,
-            usernameIsFocused: false
         };
-
-        this.handleOnFocusEmail = this.handleOnFocusEmail.bind(this);
-        this.handleOnFocusPassword = this.handleOnFocusPassword.bind(this);
-        this.handleOnFocusFirstName = this.handleOnFocusFirstName.bind(this);
-        this.handleOnFocusLastName = this.handleOnFocusLastName.bind(this);
-        this.handleOnFocusUsername = this.handleOnFocusUsername.bind(this);
     }
 
 
@@ -103,30 +90,7 @@ export default class SignUp extends Component {
         this.setState({ username: event.target.value });
     };
 
-    handleOnFocusEmail() {
-        this.setState({ emailIsFocused: true, });
-    }
-
-    handleOnFocusPassword() {
-        this.setState({ passwordIsFocused: true, });
-    }
-
-    handleOnFocusFirstName() {
-        this.setState({ firstNameIsFocused: true, });
-    }
-
-    handleOnFocusLastName() {
-        this.setState({ lastNameIsFocused: true, });
-    }
-
-    handleOnFocusUsername() {
-        this.setState({ usernameIsFocused: true, });
-    }
-
-
-    createAccount = (event) => {
-        event.preventDefault();
-
+    createAccount = () => {
         console.log('E - submit #form-signup');
 
         let newUserData = {
@@ -153,6 +117,13 @@ export default class SignUp extends Component {
             console.log('Logged!');
         } else {
             this.setState({ error: 'Please provide all fields.' });
+        }
+    };
+
+    enterPress = event => {
+        let code = event.key;
+        if(code === 'Enter'){
+            this.createAccount();
         }
     };
 
@@ -187,17 +158,37 @@ export default class SignUp extends Component {
                                     fullWidth
                                     id="firstName"
                                     label="First Name"
-                                    autoFocus />
+                                    value = {this.state.firstName}
+                                    onChange = {this.handleChangeFirstName}
+                                    onKeyPress={this.enterPress}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    autoComplete="lname"
                                     variant="outlined"
                                     required
                                     fullWidth
                                     id="lastName"
                                     label="Last Name"
                                     name="lastName"
-                                    autoComplete="lname"
+                                    value = {this.state.lastName}
+                                    onChange = {this.handleChangeLastName}
+                                    onKeyPress={this.enterPress}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="username"
+                                    label="Username"
+                                    name="username"
+                                    autoComplete="username"
+                                    value = {this.state.username}
+                                    onChange = {this.handleChangeUsername}
+                                    onKeyPress={this.enterPress}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -209,6 +200,9 @@ export default class SignUp extends Component {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    value = {this.state.email}
+                                    onChange = {this.handleChangeEmail}
+                                    onKeyPress={this.enterPress}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -221,6 +215,9 @@ export default class SignUp extends Component {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    value = {this.state.password}
+                                    onChange = {this.handleChangePassword}
+                                    onKeyPress={this.enterPress}
                                 />
                             </Grid>
 
@@ -230,14 +227,19 @@ export default class SignUp extends Component {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            
+                            onClick={this.createAccount}
                         >
                             Sign Up
                         </StyledButton>
-                    </Form> 
+                    </Form>
+                    {this.loginRoute()}
                 </Div>
                 <Box mt={5}>
                     <Typography variant="body2" color="textSecondary" align="center">
+                        <Link to="/"> Volte para o login! </Link>
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" align="center">
+
                         {'Built with love  by the chAIn'}
                         
                         {' team.'}
