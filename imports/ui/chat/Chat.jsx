@@ -20,7 +20,7 @@ const WrapperItems = styled.div`
     flex-direction: column;
     align-items: center;
     width: 256px;
-    
+    height: 100%;
 `;
 
 const WrapperBar = styled.div`
@@ -28,18 +28,26 @@ const WrapperBar = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height:7%;
     
 `;
 
+const CenterWrapper = styled.div`
+    display:flex;
+    position:absolute;
+    flex-direction:column;
+    justify-content:center;
+    height:94%;
+    width:100%;
+`;
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
+    height:100%;
     justify-content: flex-start;
 `;
 
-const TitleWrapper = styled.div`
-    text-align: center;
-`;
+
 
 export default class Chat extends Component {
     constructor(props){
@@ -93,21 +101,23 @@ export default class Chat extends Component {
     render() {
         return (
             <main>
+                <WrapperBar>
+                        <BarTop/>      
+                </WrapperBar>
 
-                <Wrapper>
-                    <WrapperItems>
+                <CenterWrapper>
+                   
+                    <Wrapper>
+                      <WrapperItems>
                       
-                        <Items{...this.props}/ >
+                          <Items{...this.props}/ >
                         
-                    </WrapperItems>
-                    <WrapperBar>
-                    <BarTop/>
-                        
-                    </WrapperBar>
-
-                </Wrapper>
-
+                      </WrapperItems>
+                   
+                    </Wrapper>
+                </CenterWrapper>
             </main>
+
         );
     }
 }

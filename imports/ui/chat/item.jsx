@@ -8,11 +8,12 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    border-bottom-width: 1px;
-    border-bottom-style:solid;
-    border-bottom-color: #000000;
+    margin-top:2px;
+    border-bottom:0.5px;
+    border-bottom-style: solid
+    border-bottom-color :rgba(0,0,0,0.12) ;
 `;
+
 
 export default class Item extends Component {
     constructor(props) {
@@ -47,11 +48,11 @@ export default class Item extends Component {
         return(
             
             <Wrapper>
-            <ListItem button onClick={this.startChatWithUser.bind(this, Meteor.userId(), _id)}>
-                <ListItemText> { username } </ListItemText>
-                 
-            </ListItem>
-            
+                <ListItem button onClick={this.startChatWithUser.bind(this, Meteor.userId(), _id)}>
+                    <ListItemText>{username} </ListItemText>
+
+                </ListItem>
+        
             </Wrapper>
             
             
