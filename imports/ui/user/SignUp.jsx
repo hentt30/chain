@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Home from '../common/Home';
 import {Link} from "react-router-dom";
 
 const StyledAvatar = withStyles({
@@ -146,9 +145,9 @@ export default class SignUp extends Component {
                     </StyledAvatar>
                     <StyledTypography component="h1" variant="h5">
                         Sign up
-                </StyledTypography>
-                    <Form>
-                        <Grid container spacing={2}>
+                    </StyledTypography>
+                        <Form>
+                            <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="fname"
