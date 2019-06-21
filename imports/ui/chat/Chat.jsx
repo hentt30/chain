@@ -81,5 +81,5 @@ export default class Chat extends Component {
             </Wrapper>
             </main>
         );
-    }
+    }   
 }

@@ -1,9 +1,10 @@
 import {Meteor} from 'meteor/meteor';
 
-import {quant, UsersSubjects, subjects} from '../imports/api/subjects/subjects.js';
+import {quant, subjects} from '../imports/api/subjects/subjects.js';
 import {Profiles} from '../lib/collections.js';
 import {Messages} from '../lib/collections.js';
 import {ChatRoomMembers} from '../lib/collections.js';
+import {UsersSubjects} from '../lib/collections.js';
 import {Accounts} from 'meteor/accounts-base';
 
 const idMembers = (chatRoomId) => {
@@ -27,7 +28,7 @@ Meteor.startup(() => {
     });
     let i = 0;
     for (i; i < quant; i++){
-      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: 0}});
+      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: [parseFloat(0), false]}});
     }
     return user;
   });
@@ -51,7 +52,7 @@ Meteor.startup(() => {
         mySubjects[i] = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0]);
         console.log(mySubjects[i]);
         mySubjects[i] = parseFloat(mySubjects[i]) + parseFloat(SubjectData);
-        UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [mySubjects[i]]}});
+        UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [[mySubjects[i], true]]}});
       }
     },
 

@@ -1,7 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { allSubjects } from './allSubjects.js';
-
-export const UsersSubjects = new Mongo.Collection('users_subjects');
+import { UsersSubjects } from '../../../lib/collections';
 
 const Subjects = new Mongo.Collection('subjects');
 
@@ -14,7 +13,7 @@ while (i < allSubjects.length) {
         [i]: [ allSubjects[i] ]
     });
 
-    UsersSubjects.update({}, {$addToSet: {[i]: [parseFloat(0)]}});
+    UsersSubjects.update({}, {$addToSet: {[i]: [parseFloat(0), false]}});
 
     i++;
 }

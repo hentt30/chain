@@ -9,6 +9,7 @@ import Home from "../common/Home";
 import Logout from "../common/Logout";
 import {Messages} from "../../../lib/collections";
 import {TextContainer} from "./TextContainer";
+import ChatSubjects from "../user/subjects/ChatSubjects";
 
 /*CSS*/
 
@@ -78,6 +79,7 @@ export default class ChatRoom extends Component {
                     </WrapperChat>
                 </SideBySide>
                 <Logout {...this.props}/>
+                <ChatSubjects/>
             </Wrapper>
             </main>
         );

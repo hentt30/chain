@@ -6,6 +6,7 @@ import { App } from '../imports/ui/App.jsx';
 
 Tracker.autorun(() => {
   Meteor.subscribe('messages');
+  Meteor.subscribe('users_subjects');
 });
 
 Meteor.startup(() => {
