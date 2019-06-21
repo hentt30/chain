@@ -199,7 +199,7 @@ export default class Home extends Component {
                             onChange = {this.handleChangePassword}
                         />
 
-sub                        <LittleText> <Link to="/signup"> Ainda não tem uma conta? Clique aqui! </Link></LittleText>
+                        <LittleText> <Link to="/signup"> Ainda não tem uma conta? Clique aqui! </Link></LittleText>
                         <StyledFab variant="extended" aria-label="Delete" onClick ={this.login}>
                              <StyledNavigationIcon/>
                              Enter
