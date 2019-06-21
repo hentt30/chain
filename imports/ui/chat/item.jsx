@@ -2,6 +2,17 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-bottom-width: 1px;
+    border-bottom-style:solid;
+    border-bottom-color: #000000;
+`;
 
 export default class Item extends Component {
     constructor(props) {
@@ -34,9 +45,18 @@ export default class Item extends Component {
     render(){
         const { _id, username } = this.props.user;
         return(
+            
+            <Wrapper>
             <ListItem button onClick={this.startChatWithUser.bind(this, Meteor.userId(), _id)}>
                 <ListItemText> { username } </ListItemText>
+                 
             </ListItem>
+            
+            </Wrapper>
+            
+            
+            
+            
             );
     }
 }
