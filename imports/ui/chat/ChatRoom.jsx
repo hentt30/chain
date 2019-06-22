@@ -9,77 +9,100 @@ import Home from "../common/Home";
 import Logout from "../common/Logout";
 import {Messages} from "../../../lib/collections";
 import {TextContainer} from "./TextContainer";
+import BarTop from "./BarTop";
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 /*CSS*/
 
-const SideBySide = styled.div`
-    display: flex;
-    justify-content: center; 
-`;
-
-const SubjectWrapper = styled.div`
-    text-align: center;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-`;
+const StyledGrid = withStyles({
+    root: {
+        margin: 'auto',
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        height: '93vh',
+    },
+})(Grid)
 
 const WrapperChat = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: column;
+    border-right-width: 1px;
+    border-right-style:solid;
+    border-right-color: #D3D3D3;
 `;
-
 
 const WrapperItems = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 256px;
+    width: 300px;
+    height: 100%;
+`;
+
+const WrapperBar = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height:7%;
     
 `;
+
+const PageWrapper = styled.div`
+    height: 100%;
+`;
+
 
 Meteor.subscribe('pubMessage');
 
 export default class ChatRoom extends Component {
     constructor(props){
         super(props);
-        this.logout = this.logout.bind(this);
-    }
-
-    logout(e){
-        e.preventDefault();
-        Meteor.logout( (err) => {
-            if (err) {
-                console.log( err.reason );
-            } else {
-                this.props.history.push('/login');
-            }
-        });
     }
 
     render() {
         return (
-            <main>
-            <SubjectWrapper>
-                <SuggestionSubject {...this.props}/>
-            </SubjectWrapper>
-            <Wrapper>
-                <Home {...this.props}/>
-                <SideBySide>
-                    <WrapperItems>
-                        <Items {...this.props}/>
-                    </WrapperItems>
+            <PageWrapper>
+                <WrapperBar >
+                    <BarTop {...this.props}/>
+                </WrapperBar>
+                <StyledGrid xs={10}>
+                    <Hidden smDown>
+                        <WrapperItems>
+                            <Items {...this.props} />
+                        </WrapperItems>
+                    </Hidden>
                     <WrapperChat>
-                        <MessageList {...this.props}/>
+                        <MessageList {...this.props} />
                         <TextContainer {...this.props}/>
                     </WrapperChat>
-                </SideBySide>
-                <Logout {...this.props}/>
-            </Wrapper>
-            </main>
+                </StyledGrid>
+            </PageWrapper>
         );
     }
 }
+/*
+<main>
+    <SubjectWrapper>
+        <SuggestionSubject {...this.props}/>
+    </SubjectWrapper>
+    <Wrapper>
+        <Home {...this.props}/>
+        <SideBySide>
+            <WrapperItems>
+                <Items {...this.props}/>
+            </WrapperItems>
+            <WrapperChat>
+                <MessageList {...this.props}/>
+                <TextContainer {...this.props}/>
+            </WrapperChat>
+        </SideBySide>
+        <Logout {...this.props}/>
+    </Wrapper>
+</main>
+*/

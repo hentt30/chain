@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, {Component} from "react";
 import styled from "styled-components";
 import {StyledFab, StyledNavigationIcon} from './StandardButtonStyle';
+import Button from "@material-ui/core/Button";
 
 const WrapperButton = styled.div`
     height: 24px;
@@ -27,12 +28,7 @@ export default class Logout extends Component {
 
     render() {
         return (
-            <WrapperButton>
-                <StyledFab variant="extended" aria-label="Delete" onClick ={this.logout}>
-                    <StyledNavigationIcon/>
-                    Logout
-                </StyledFab>
-            </WrapperButton>
+            <Button color="inherit" onClick ={this.logout}>Logout</Button>
         );
     }
 
