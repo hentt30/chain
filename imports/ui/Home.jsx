@@ -67,7 +67,6 @@ const StyledGrid = withStyles({
 
 const Title = styled.h1`
     text-align: center;
-    font-size: 10.0em;
     font-family:'Monospace';
     color: #FFFFFF;
     margin-bottom: 0px;
@@ -89,6 +88,7 @@ const Background = styled.div`
     display: flex;
     justify-content: space-around;
     background-image: url('/images/brain_home.jpg');
+    background-color: #000000;
 `;
 const LittleText = styled.a`
 
@@ -152,17 +152,17 @@ export default class Home extends Component {
 
             <Background>
                 <Hidden smDown>
-                <StyledGrid>
-                    <Title>chAIn</Title>
-                    <SubTitle>Conectando pessoas atráves de ideias</SubTitle>
-                </StyledGrid>
+                    <StyledGrid>
+                        <Title style={{"font-size": "8.0em"}}>chAIn</Title>
+                        <SubTitle>Conectando pessoas atráves de ideias</SubTitle>
+                    </StyledGrid>
                 </Hidden>
 
                 <StyledGrid>
                     <Hidden mdUp>
                         <StyledGrid>
-                            <Title>chAIn</Title>
-                            <SubTitle>Conectando pessoas atráves de ideias</SubTitle>
+                            <Title style={{"font-size": "5.0em"}}>chAIn</Title>
+                            <SubTitle style={{"font-size": "0.8em"}}>Conectando pessoas atráves de ideias</SubTitle>
                         </StyledGrid>
                     </Hidden>
                     <StyledPaper>

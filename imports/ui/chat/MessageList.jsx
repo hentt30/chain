@@ -2,6 +2,8 @@ import React from 'react';
 import { Message } from './Message';
 import { Messages } from "../../../lib/collections";
 import styled from "styled-components";
+import Hidden from "@material-ui/core/Hidden";
+import {SuggestionSubject} from "./SuggestionSubject";
 
 const MessagesBox = styled.div`
     height: 100%;
@@ -83,6 +85,9 @@ export class MessageList extends React.Component{
 
         return (
             <PageWrapper>
+                <Hidden>
+                    <SuggestionSubject {...this.props}/>
+                </Hidden>
                 <MessagesBox id="message_box">
                     {this.state.messagesList}
                 </MessagesBox>

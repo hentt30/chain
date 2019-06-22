@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import {SuggestionSubject} from "./SuggestionSubject";
+import Hidden from "@material-ui/core/Hidden";
 
 const MessageListBox = styled.div`
     height: 7%;
@@ -15,7 +16,7 @@ const MessageListBox = styled.div`
 const TextBox = styled.div`
     display: flex;
     justify-content: center; 
-    width: 70%;
+    width: 100%;
     margin-top: 0px;
     margin-bottom: 10px;
 `;
@@ -55,7 +56,6 @@ export class TextContainer extends React.Component{
                         Enviar
                     </Button>
                 </TextBox>
-                <SuggestionSubject {...this.props}/>
             </MessageListBox>
         );
     }

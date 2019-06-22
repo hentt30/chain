@@ -10,10 +10,14 @@ const StyledCard = withStyles({
 })(Card)
 
 const StyledTypography = withStyles({
+    root: {
+        textAlign: 'center',
+    }
 })(Typography)
 
 const Wrapper = styled.div`
     align-self: center;
+    margin-top: 10px;
     margin-bottom: 10px;
     height: auto;
 `;
@@ -60,7 +64,7 @@ export class SuggestionSubject extends React.Component{
             <Wrapper>
                 {this.renderSubject()}
                 <StyledCard >
-                    <CardContent style={{margin: 2}}>
+                    <CardContent style={{margin: 1}}>
                     {this.state.suggestionSubject}
                     </CardContent>
                 </StyledCard>

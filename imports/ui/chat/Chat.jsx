@@ -75,11 +75,16 @@ export default class Chat extends Component {
                 <WrapperBar >
                     <BarTop {...this.props}/>
                 </WrapperBar>
+                <Hidden mdUp>
+                    <ChatSubjects {...this.props} />
+                </Hidden>
                 <StyledGrid xs={10}>
                     <WrapperItems>
                         <Items {...this.props} />
                     </WrapperItems>
-                    <ChatSubjects {...this.props} />
+                    <Hidden smDown>
+                        <ChatSubjects {...this.props} />
+                    </Hidden>
                 </StyledGrid>
             </PageWrapper>
         );

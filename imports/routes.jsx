@@ -1,9 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory as createHistory } from 'history';
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-
 // route components
 import Home from './ui/Home.jsx';
 import SignUp from './ui/user/SignUp.jsx';
