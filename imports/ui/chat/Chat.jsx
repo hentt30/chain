@@ -6,6 +6,12 @@ import {Link} from "react-router-dom";
 import Home from "../common/Home";
 import Items from "./items";
 import Logout from "../common/Logout";
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { FixedSizeList } from 'react-window';
+import BarTop from "./BarTop.jsx";
 
 /*CSS*/
 
@@ -14,18 +20,34 @@ const WrapperItems = styled.div`
     flex-direction: column;
     align-items: center;
     width: 256px;
+    height: 100%;
+`;
+
+const WrapperBar = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height:7%;
     
 `;
 
+const CenterWrapper = styled.div`
+    display:flex;
+    position:absolute;
+    flex-direction:column;
+    justify-content:center;
+    height:94%;
+    width:100%;
+`;
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    height:100%;
+    justify-content: flex-start;
 `;
 
-const TitleWrapper = styled.div`
-    text-align: center;
-`;
+
 
 export default class Chat extends Component {
     constructor(props){
@@ -65,21 +87,37 @@ export default class Chat extends Component {
             }
         });
     }
-
-    render() {
-        return (
-            <main>
-                <TitleWrapper>
-                   <p>Escolha alguém para conversar!</p>
-                </TitleWrapper>
-            <Wrapper>
+    /*            <Wrapper>
                 <Home {...this.props}/>
                 <WrapperItems>
                     <Items {...this.props}/>
                 </WrapperItems>
-                <Logout {...this.props}/>
-            </Wrapper>
+                <Logout {...this.props}/> 
+            </Wrapper> */
+            /*                <TitleWrapper>
+                   <p>Escolha alguém para conversar!</p>
+                </TitleWrapper>*/ 
+
+    render() {
+        return (
+            <main>
+                <WrapperBar>
+                        <BarTop/>      
+                </WrapperBar>
+
+                <CenterWrapper>
+                   
+                    <Wrapper>
+                      <WrapperItems>
+                      
+                          <Items{...this.props}/ >
+                        
+                      </WrapperItems>
+                   
+                    </Wrapper>
+                </CenterWrapper>
             </main>
+
         );
     }   
 }
