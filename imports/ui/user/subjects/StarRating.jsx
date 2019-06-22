@@ -32,6 +32,10 @@ export default class StarRating extends Component {
         this.updateSubjects = this.updateSubjects.bind(this);
     }
 
+    componentWillUnmount = () => {
+        this.updateSubjects(this.state.i);
+    };
+
     changeRating( newRating ) {
         this.setState({ rating: newRating, });
     }
@@ -56,7 +60,6 @@ export default class StarRating extends Component {
                 <StarRatings
                     {...starProps}
                     changeRating={this.changeRating}
-                    onClick={this.updateSubjects(this.state.i)}
                 />
                 <br/>
                 </CenterWrapper>

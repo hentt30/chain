@@ -27,7 +27,7 @@ Meteor.startup(() => {
     });
     let i = 0;
     for (i; i < quant; i++){
-      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: [parseFloat(0), false]}});
+      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: [0, false]}});
     }
     return user;
   });
@@ -46,13 +46,16 @@ Meteor.startup(() => {
     },
 
     'insertUserSubject': (subjectRate, i) => {
-      const subjectData = subjectRate*weightSubject[i];
-      const mySubjects = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u);
+      const mySubjects = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u)[0];
+      let subjectData = [];
       for(let k = 0; k < quant; k++){
-        mySubjects[k][0] = parseFloat(mySubjects[k][0]) + parseFloat(subjectData[k]);
-        UsersSubjects.update({userId: Meteor.userId()}, {$set: {[k]: [mySubjects[k][0], mySubjects[k][1]]}});
+        subjectData[k] = subjectRate*weightSubject[i][k];
       }
-      UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [mySubjects[i][0], true]}});
+      for(let k = 0; k < quant; k++){
+        mySubjects[k][0][0] = parseFloat(mySubjects[k][0][0]) + parseFloat(subjectData[k]);
+        UsersSubjects.update({userId: Meteor.userId()}, {$set: {[k]: [[mySubjects[k][0][0], mySubjects[k][0][1]]]}});
+      }
+      UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [[mySubjects[i][0][0], true]]}});
     },
 
     'isRated': (userId) => {

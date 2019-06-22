@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-import {Link} from "react-router-dom";
-import Home from "../common/Home";
 import Items from "./items";
-import Logout from "../common/Logout";
-import PropTypes from 'prop-types';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { FixedSizeList } from 'react-window';
+import {withStyles} from '@material-ui/core/styles';
 import BarTop from "./BarTop.jsx";
 import Grid from '@material-ui/core/Grid';
 import Hidden from "@material-ui/core/Hidden";
-import {MessageList} from "./MessageList";
-import {TextContainer} from "./TextContainer";
 
 /*CSS*/
 const StyledGrid = withStyles({

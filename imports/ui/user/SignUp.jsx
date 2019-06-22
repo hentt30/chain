@@ -140,6 +140,7 @@ export default class SignUp extends Component {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Div>
+                    { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
                     <StyledAvatar>
                         <LockOutlinedIcon />
                     </StyledAvatar>

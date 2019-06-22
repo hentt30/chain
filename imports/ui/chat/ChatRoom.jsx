@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
 import {MessageList} from "./MessageList";
-import {SuggestionSubject} from './SuggestionSubject';
 import Items from "./items";
-import Home from "../common/Home";
-import Logout from "../common/Logout";
 import {TextContainer} from "./TextContainer";
 import BarTop from "./BarTop";
 import Grid from '@material-ui/core/Grid';
