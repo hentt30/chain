@@ -82,23 +82,3 @@ export default class ChatRoom extends Component {
         );
     }
 }
-/*
-<main>
-    <SubjectWrapper>
-        <SuggestionSubject {...this.props}/>
-    </SubjectWrapper>
-    <Wrapper>
-        <Home {...this.props}/>
-        <SideBySide>
-            <WrapperItems>
-                <Items {...this.props}/>
-            </WrapperItems>
-            <WrapperChat>
-                <MessageList {...this.props}/>
-                <TextContainer {...this.props}/>
-            </WrapperChat>
-        </SideBySide>
-        <Logout {...this.props}/>
-    </Wrapper>
-</main>
-*/

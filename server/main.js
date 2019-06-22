@@ -1,8 +1,9 @@
 import {Meteor} from 'meteor/meteor';
-import {quant, UsersSubjects, subjects, weightSubject} from '../imports/api/subjects/subjects.js';
+import {quant, subjects, weightSubject} from '../imports/api/subjects/subjects.js';
 import {Profiles} from '../lib/collections.js';
 import {Messages} from '../lib/collections.js';
 import {ChatRoomMembers} from '../lib/collections.js';
+import {UsersSubjects} from '../lib/collections.js';
 import {Accounts} from 'meteor/accounts-base';
 
 const idMembers = (chatRoomId) => {
@@ -26,7 +27,7 @@ Meteor.startup(() => {
     });
     let i = 0;
     for (i; i < quant; i++){
-      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: 0}});
+      UsersSubjects.update({ userId: user._id }, {$addToSet: {[i]: [parseFloat(0), false]}});
     }
     return user;
   });
@@ -45,15 +46,25 @@ Meteor.startup(() => {
     },
 
     'insertUserSubject': (subjectRate, i) => {
-      console.log(subjectRate);
       const subjectData = subjectRate*weightSubject[i];
-      console.log(subjectData);
       const mySubjects = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u);
       for(let k = 0; k < quant; k++){
         mySubjects[k][0] = parseFloat(mySubjects[k][0]) + parseFloat(subjectData[k]);
         UsersSubjects.update({userId: Meteor.userId()}, {$set: {[k]: [mySubjects[k][0], mySubjects[k][1]]}});
       }
       UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [mySubjects[i][0], true]}});
+    },
+
+    'isRated': (userId) => {
+      let isRated = true;
+      let s = -1;
+      while(isRated && s < quant){
+        s++;
+        isRated = UsersSubjects.find({ userId: userId }).map(u => u[s][0][1])[0];
+      }
+      return {
+        data: s,
+      };
     },
 
     'usersAll': () => Meteor.users.find({_id: {$ne: Meteor.userId()}}, {sort: {createdAt: -1}}).fetch(),
