@@ -6,15 +6,7 @@ import Item from "./item";
 const Holder2 = styled.div`
     width: 100%;
     display: flex;
-    height: 100%;
-    max-width: 460px;
-    background-color : #FFFFFF;
     flex-flow: column;
-    overflow-y: scroll;
-    border-right-width: 1px;
-    border-right-style:solid;
-    border-right-color: #000000;
-
 `;
 
 export default class Items extends Component {
@@ -58,12 +50,9 @@ export default class Items extends Component {
 
     render(){
         return(
-            
-                <Holder2>
-
-                    { this.renderUsersList() }
-                </Holder2>
-            
+            <Holder2>
+                { this.renderUsersList() }
+            </Holder2>
         );
     }
 }
