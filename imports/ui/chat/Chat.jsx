@@ -14,7 +14,7 @@ const StyledGrid = withStyles({
         margin: 'auto',
         flexGrow: 1,
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         height: '93vh',
     },
@@ -26,6 +26,12 @@ const WrapperItems = styled.div`
     align-items: flex-start;
     width: 300px;
     height: 100%;
+`;
+
+const WrapperSubjects = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 `;
 
 const WrapperBar = styled.div`
@@ -75,16 +81,19 @@ export default class Chat extends Component {
                 <WrapperBar >
                     <BarTop {...this.props}/>
                 </WrapperBar>
-                <Hidden mdUp>
-                    <ChatSubjects {...this.props} />
-                </Hidden>
+
                 <StyledGrid xs={10}>
-                    <WrapperItems>
-                        <Items {...this.props} />
-                    </WrapperItems>
-                    <Hidden smDown>
+                    <Hidden smUp>
                         <ChatSubjects {...this.props} />
                     </Hidden>
+                    <WrapperSubjects>
+                        <WrapperItems>
+                            <Items {...this.props} />
+                        </WrapperItems>
+                        <Hidden xsDown>
+                            <ChatSubjects {...this.props} />
+                        </Hidden>
+                    </WrapperSubjects>
                 </StyledGrid>
             </PageWrapper>
         );

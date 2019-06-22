@@ -52,10 +52,11 @@ const Title = styled.h1`
     font-family:'Monospace';
     color: #0360ad;
     margin-bottom: 0px;
+    margin-top: 2px;
 `;
 
 const SubTitle = styled.h1`
-    width: 600px;
+    width: 100%;
     text-align: center;
     align-items: center;  
     margin-top: 0px;
@@ -69,6 +70,7 @@ const CenterWrapper = styled.div`
     flex-direction: column;
     align-items:center;
     justify-content:center;
+    margin-bottom: 8px;
 `;
 
 export default class SignUpSubjects extends Component {

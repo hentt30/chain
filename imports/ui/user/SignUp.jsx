@@ -39,7 +39,7 @@ const StyledButton = withStyles({
 })(Button)
 /*CSS*/
 const Div = styled.div`
-    margin-top : 100px;
+    margin-top : 36px;
     display: flex;
     flex-direction: column;
     align-items:center;

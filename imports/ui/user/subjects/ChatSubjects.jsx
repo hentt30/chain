@@ -34,7 +34,6 @@ const SubTitle = styled.h1`
      text-align: center;
     font-size: 1.0em;
     color: #0360ad;
-    margin-bottom: 50px;
 `;
 
 const CenterWrapper = styled.div`

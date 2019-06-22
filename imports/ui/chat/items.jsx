@@ -8,7 +8,6 @@ const Holder2 = styled.div`
     width: 100%;
     display: flex;
     height: 100%;
-    margin-bottom: 10px;
     max-width: 460px;
     background-color : #FFFFFF;
     flex-flow: column;
