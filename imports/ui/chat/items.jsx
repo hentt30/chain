@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Item from "./item";
+import {SuggestionSubject} from "./SuggestionSubject";
 
 const Holder2 = styled.div`
     width: 100%;

@@ -139,7 +139,6 @@ export default class Home extends Component {
     };
 
     enterPress = event => {
-        console.log('oi');
         let code = event.key;
         if(code === 'Enter'){
             this.login(event);

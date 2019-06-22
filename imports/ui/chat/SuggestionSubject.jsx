@@ -1,6 +1,24 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
+
+const StyledCard = withStyles({
+    minHeight: '100px',
+    margin: 8,
+})(Card)
+
+const StyledTypography = withStyles({
+})(Typography)
+
+const Wrapper = styled.div`
+    align-self: center;
+    margin-bottom: 10px;
+    height: auto;
+`;
 
 export class SuggestionSubject extends React.Component{
     constructor(props) {
@@ -29,11 +47,11 @@ export class SuggestionSubject extends React.Component{
 
         if(this.state.subject !== undefined) {
             suggestionSubject = (
-                <p> Converse sobre {this.state.subject[0]} ou {this.state.subject[1]} </p>
+                <StyledTypography> Converse sobre {this.state.subject[0]} ou {this.state.subject[1]} </StyledTypography>
             );
         } else {
             suggestionSubject = (
-                <p> Please wait...</p>
+                <StyledTypography> Please wait...</StyledTypography>
             )
         }
         this.state.suggestionSubject = suggestionSubject;
@@ -41,13 +59,16 @@ export class SuggestionSubject extends React.Component{
 
     render() {
         return (
-            <main>
-
+            <Wrapper>
                 {this.renderSubject()}
+                <StyledCard >
+                    <CardContent>
+                    {this.state.suggestionSubject}
+                    </CardContent>
+                </StyledCard>
 
-                {this.state.suggestionSubject}
 
-            </main>
+            </Wrapper>
         );
     }
 }

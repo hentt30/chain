@@ -3,14 +3,17 @@ import { Meteor } from 'meteor/meteor';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import {SuggestionSubject} from "./SuggestionSubject";
 
 const MessageListBox = styled.div`
+    display: flex;
+    justify-content: space-around; 
 `;
 
 const TextBox = styled.div`
     display: flex;
     justify-content: center; 
-    width: 100%;
+    width: 70%;
     margin-bottom: 10px;
 `;
 
@@ -44,11 +47,12 @@ export class TextContainer extends React.Component{
         return (
             <MessageListBox>
                 <TextBox>
-                    <TextField variant="outlined" placeholder="Enter message..." value={this.state.value} onKeyPress={this.enterPress} onChange={this.handleChangeMessage}/>
-                    <Button onClick={this.handleMessage} variant="contained">
+                    <TextField fullWidth style={{margin: 8}} variant="outlined" placeholder="Enter message..." value={this.state.value} onKeyPress={this.enterPress} onChange={this.handleChangeMessage}/>
+                    <Button onClick={this.handleMessage} style={{margin: 8}} size="small" variant="contained" color="primary">
                         Enviar
                     </Button>
                 </TextBox>
+                <SuggestionSubject {...this.props}/>
             </MessageListBox>
         );
     }

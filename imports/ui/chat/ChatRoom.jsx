@@ -8,6 +8,7 @@ import BarTop from "./BarTop";
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
+import {SuggestionSubject} from "./SuggestionSubject";
 
 /*CSS*/
 

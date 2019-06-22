@@ -4,8 +4,25 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import StarRatings from 'react-star-ratings';
 import { allSubjects } from '../../../api/subjects/allSubjects';
+import {withStyles} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from '@material-ui/core/Typography';
 
 /*CSS*/
+const StyledTypography = withStyles({
+    root: {
+        marginBottom: '10px',
+    },
+})(Typography)
+
+const StyledButton = withStyles({
+    root: {
+        marginTop: '16px',
+        marginBottom: '16px',
+        width: '128px',
+    },
+})(Button)
 
 const Title = styled.h1`
     text-align: center;
@@ -21,7 +38,8 @@ const SubTitle = styled.h1`
 `;
 
 const CenterWrapper = styled.div`
-
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -102,14 +120,27 @@ export default class ChatSubjects extends Component {
         return (
             <CenterWrapper>
                 <SubTitle>
-                    {this.state.subject}
+                    <StyledTypography variant="h6">
+                        {'Quanto você gosta de conversar sobre '}
+                        {this.state.subject}
+                        {'?!'}
+                    </StyledTypography>
                     {this.state.subject !== '' ?
                         <main>
                         <StarRatings
                             {...starProps}
                             changeRating={this.changeRating}
                         />
-                        <SubmitButton onClick={this.updateSubject}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                        <br/>
+                        <StyledButton
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            onClick={this.updateSubject}
+                        >
+                            Enviar
+                        </StyledButton>
                         </main>
                         : ''}
                 </SubTitle>

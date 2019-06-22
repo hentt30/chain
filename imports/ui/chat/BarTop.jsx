@@ -9,7 +9,6 @@ import Home from '../common/Home';
 import Logout from '../common/Logout';
 
 const Wrapper = styled.div`
-    margin: auto;
     align-self: center;
     width:100%; 
 `;
