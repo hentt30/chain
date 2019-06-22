@@ -49,11 +49,24 @@ Meteor.startup(() => {
     'insertUserSubject': (SubjectData, i) => {
       let mySubjects = [];
       if(quant > i && i >= 0){
-        mySubjects[i] = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0]);
+        mySubjects[i] = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0][0]);
         console.log(mySubjects[i]);
+        console.log( UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[i][0][1]));
         mySubjects[i] = parseFloat(mySubjects[i]) + parseFloat(SubjectData);
         UsersSubjects.update({userId: Meteor.userId()}, {$set: {[i]: [[mySubjects[i], true]]}});
       }
+    },
+
+    'isRated': (userId) => {
+      let isRated = true;
+      let s = -1;
+      while(isRated && s < quant){
+        s++;
+        isRated = UsersSubjects.find({ userId: userId }).map(u => u[s][0][1])[0];
+      }
+      return {
+        data: s,
+      };
     },
 
     'usersAll': () => Meteor.users.find({_id: {$ne: Meteor.userId()}}, {sort: {createdAt: -1}}).fetch(),

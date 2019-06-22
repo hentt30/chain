@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Meteor } from 'meteor/meteor';
-import StarRating from './StarRating.jsx';
+import { Mongo } from 'meteor/mongo';
+import StarRatings from 'react-star-ratings';
 import { allSubjects } from '../../../api/subjects/allSubjects';
-import { UsersSubjects } from '../../../../lib/collections'
 
 /*CSS*/
 
@@ -48,34 +48,71 @@ const SubmitButton = styled.button`
 `;
 
 export default class ChatSubjects extends Component {
-
-
-    random = () => {
-        const len = allSubjects.length;
-        let s = 0, isRated = true;
-        while(isRated && s < len){
-            isRated = UsersSubjects.find({ userId: Meteor.userId() }).map(u => u[s][1]);
-            console.log(UsersSubjects.find({ userId: Meteor.userId() }).map(u => u))
-            s++;
-        }
-        if(!isRated){
-            return (<StarRating {...{i: s}}/>);
-        }
-        else{
-            return '';
-        }
-        
+    constructor(props) {
+        super(props);
+        this.state = {
+            mixins: [ReactMeteorData],
+            subject: '',
+            s: -1,
+            error: '',
+            rating: 0,
+        };
+        this.changeRating = this.changeRating.bind(this);
+        this.updateSubject = this.updateSubject.bind(this);
     };
 
+    componentWillMount = () => {
+        this.random();
+    };
+
+    random = () => {
+        Meteor.call('isRated', Meteor.userId(), (error, result) => {
+            if (error) {
+                this.setState({error: error.reason, subject: ''});
+            } else {
+                if(this.state.s !== result.data){
+                    this.setState({s: result.data, subject: allSubjects[result.data]});
+                }
+            }
+        });
+    };
+
+    changeRating( newRating ) {
+        this.setState({ rating: newRating });
+    }
+
+    updateSubject() {
+        let s = this.state.s;
+        if(0 <= s && s < allSubjects.length) {
+            Meteor.call('insertUserSubject', this.state.rating/2, s);
+            console.log("Subject insert!");
+            this.random();
+            this.setState({rating: 0});
+        }
+    }
+
     render() {
-        let s = this.random();
-        console.log(s);
+        const starProps = {
+            starRatedColor: "blue",
+            numberOfStars: 5,
+            name: 'rating',
+            starDimension: '40px',
+            rating: this.state.rating
+        };
         return (
             <CenterWrapper>
-                <Title>Chain</Title>
-                <SubTitle>Connecting people through ideas</SubTitle>
-                {this.random()}
-                <SubmitButton onClick = {s = this.random()}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                <SubTitle>
+                    {this.state.subject}
+                    {this.state.subject !== '' ?
+                        <main>
+                        <StarRatings
+                            {...starProps}
+                            changeRating={this.changeRating}
+                        />
+                        <SubmitButton onClick={this.updateSubject}> <img src="/images/login.png" style={{width:"16px",marginRight:"10px"}}/>Enter</SubmitButton>
+                        </main>
+                        : ''}
+                </SubTitle>
             </CenterWrapper>
         );
     }
