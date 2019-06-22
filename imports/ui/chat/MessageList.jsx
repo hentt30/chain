@@ -4,7 +4,7 @@ import { Messages } from "../../../lib/collections";
 import styled from "styled-components";
 
 const MessagesBox = styled.div`
-    height: 576px;
+    height: 100%;
     width: 100%;
     overflow-y: auto;
     text-align:left;
@@ -13,7 +13,8 @@ const MessagesBox = styled.div`
 `;
 
 const PageWrapper = styled.div`
-    height: 100%;
+    height: 86%;
+    margin-bottom: 16px;
     margin-left: 10px;
     margin-right: 10px;
 `;

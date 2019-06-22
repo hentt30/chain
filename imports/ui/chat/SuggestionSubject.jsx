@@ -7,8 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 const StyledCard = withStyles({
-    minHeight: '100px',
-    margin: 8,
 })(Card)
 
 const StyledTypography = withStyles({
@@ -62,7 +60,7 @@ export class SuggestionSubject extends React.Component{
             <Wrapper>
                 {this.renderSubject()}
                 <StyledCard >
-                    <CardContent>
+                    <CardContent style={{margin: 2}}>
                     {this.state.suggestionSubject}
                     </CardContent>
                 </StyledCard>

@@ -6,7 +6,9 @@ import styled from "styled-components";
 import {SuggestionSubject} from "./SuggestionSubject";
 
 const MessageListBox = styled.div`
+    height: 7%;
     display: flex;
+    align-items: center;
     justify-content: space-around; 
 `;
 
@@ -14,6 +16,7 @@ const TextBox = styled.div`
     display: flex;
     justify-content: center; 
     width: 70%;
+    margin-top: 0px;
     margin-bottom: 10px;
 `;
 
