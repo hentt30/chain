@@ -8,6 +8,9 @@ import Items from "./items";
 import Home from "../common/Home";
 import Logout from "../common/Logout";
 import {TextContainer} from "./TextContainer";
+import ChatSubjects from "../user/subjects/ChatSubjects";
+import {allSubjects} from "../../api/subjects/allSubjects";
+import {UsersSubjects} from "../../../lib/collections";
 
 /*CSS*/
 
@@ -46,7 +49,12 @@ export default class ChatRoom extends Component {
     constructor(props){
         super(props);
         this.logout = this.logout.bind(this);
+        this.state = {
+            subject: 0,
+        }
     }
+
+
 
     logout(e){
         e.preventDefault();
@@ -77,6 +85,7 @@ export default class ChatRoom extends Component {
                     </WrapperChat>
                 </SideBySide>
                 <Logout {...this.props}/>
+                <ChatSubjects/>
             </Wrapper>
             </main>
         );

@@ -37,15 +37,7 @@ export default class StarRating extends Component {
     }
 
     updateSubjects(i) {
-        let num_subjects = allSubjects.length;
-        for(let k=0; k < num_subjects; k++) {
-            Meteor.call('insertUserSubject', this.state.rating/2, i);
-        }
-        Meteor.call('insertUserSubject', this.state.rating/8, i-2);
-        Meteor.call('insertUserSubject', this.state.rating/4, i-1);
         Meteor.call('insertUserSubject', this.state.rating/2, i);
-        Meteor.call('insertUserSubject', this.state.rating/4, i+1);
-        Meteor.call('insertUserSubject', this.state.rating/8, i+2);
         console.log("Subject insert!");
     }
 

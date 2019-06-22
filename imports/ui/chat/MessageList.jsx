@@ -1,8 +1,6 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { Message } from './Message';
-import { Messages} from "../../../lib/collections";
-import { Mongo } from 'meteor/mongo';
+import { Messages } from "../../../lib/collections";
 import styled from "styled-components";
 
 const MessagesBox = styled.div`

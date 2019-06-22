@@ -5,7 +5,6 @@ import { renderRoutes } from '../imports/routes.jsx';
 import { App } from '../imports/ui/App.jsx';
 
 Tracker.autorun(() => {
-  Meteor.subscribe('messages');
 });
 
 Meteor.startup(() => {
