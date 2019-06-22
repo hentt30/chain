@@ -24,7 +24,7 @@ export class Message extends React.Component{
             return (
                 <main>
                 <WrapperMessage>
-                    <font size="1">{this.formatTime(this.props.message.time)} </font>
+                    <font size="1" color="#A9A9A9">{this.formatTime(this.props.message.time)} </font>
                     <p>{this.props.message.message}</p>
                 </WrapperMessage>
                   <Divider/>
@@ -36,7 +36,7 @@ export class Message extends React.Component{
                 <main>
                 <WrapperMessage>
                     <p>{this.props.message.message}</p>
-                    <font size="1">{this.formatTime(this.props.message.time)} </font>
+                    <font size="1" color="#A9A9A9">{this.formatTime(this.props.message.time)} </font>
                 </WrapperMessage>
                    <Divider/>
                 </main>

@@ -31,9 +31,6 @@ const WrapperChat = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;
-    border-right-width: 1px;
-    border-right-style:solid;
-    border-right-color: #D3D3D3;
 `;
 
 const WrapperItems = styled.div`

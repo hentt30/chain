@@ -15,10 +15,6 @@ const Holder2 = styled.div`
     border-right-width: 1px;
     border-right-style:solid;
     border-right-color: #D3D3D3;
-    border-left-width: 1px;
-    border-left-style:solid;
-    border-left-color: #D3D3D3;
-
 `;
 
 export default class Items extends Component {
