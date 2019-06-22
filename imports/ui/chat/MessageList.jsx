@@ -7,13 +7,17 @@ import styled from "styled-components";
 
 const MessagesBox = styled.div`
     height: 576px;
-    width: 512px;
-    overflow-y: scroll;
+    width: 100%;
+    overflow-y: auto;
     text-align:left;
-    margin:0 auto;
-    margin-bottom:25px;
-    padding:10px;
+    margin-bottom:24px;
     word-break: break-word;
+`;
+
+const PageWrapper = styled.div`
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
 `;
 
 export class MessageList extends React.Component{
@@ -79,11 +83,11 @@ export class MessageList extends React.Component{
     render() {
 
         return (
-            <main>
+            <PageWrapper>
                 <MessagesBox id="message_box">
                     {this.state.messagesList}
                 </MessagesBox>
-            </main>
+            </PageWrapper>
         );
     }
 }
