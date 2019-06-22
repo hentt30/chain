@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {quant, UsersSubjects, subjects, weightSubject} from '../imports/api/subjects/subjects.js';
+import {quant, subjects, weightSubject} from '../imports/api/subjects/subjects.js';
 import {Profiles} from '../lib/collections.js';
 import {Messages} from '../lib/collections.js';
 import {ChatRoomMembers} from '../lib/collections.js';
