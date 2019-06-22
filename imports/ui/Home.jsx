@@ -8,12 +8,23 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import FingerPrint from "@material-ui/icons/Fingerprint";
+import Avatar from '@material-ui/core/Avatar';
 
+const StyledAvatar = withStyles({
+    root: {
+        margin: '8 px',
+        backgroundColor: '#F1EAEA',
+    },
+})(Avatar)
 
 const StyledPaper = withStyles({
     root: {
-      padding: '10px 100px',
+      padding: '20px 100px',
       textAlign: 'center',
+      alignItems: 'center',
       display: 'flex',
       flexDirection: 'column',
     },
@@ -38,9 +49,19 @@ const StyledTypography = withStyles({
 root: {
    fontWeight:'fontWeightBold',
    fontFamily:'Monospace',
-   fontSize:'75px',
+   fontSize:'30px',
 },
 })(Typography)
+
+const StyledGrid = withStyles({
+    root: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+})(Grid)
 
 /*CSS*/
 
@@ -49,14 +70,15 @@ const Title = styled.h1`
     font-size: 10.0em;
     font-family:'Monospace';
     color: #FFFFFF;
-    margin-bottom: 0px;s
+    margin-bottom: 0px;
 `;
 
 const SubTitle = styled.h1`
     width: 600px;
     text-align: center;
     align-items: center;  
-    font-size: 3.0em;
+    margin-top: 0px;
+    font-size: 1.5em;
     color:  #FFFFFF;
     font-family:'Monospace';
 `;
@@ -67,23 +89,6 @@ const Background = styled.div`
     display: flex;
     justify-content: space-around;
     background-image: url('/images/brain_home.jpg');
-`;
-
-const Description = styled.div`
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    text-align: column;
-    align-items: center;    
-    width: 100%;
-`;
-
-const LoginWrapper = styled.div`
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-align: column;
-   width: 100%;
 `;
 const LittleText = styled.a`
 
@@ -147,15 +152,26 @@ export default class Home extends Component {
         return (
 
             <Background>
-                <Description>
+                <Hidden smDown>
+                <StyledGrid>
                     <Title>chAIn</Title>
-                    <SubTitle>Connecting People Through Ideas</SubTitle>
-                </Description>
+                    <SubTitle>Conectando pessoas atráves de ideias</SubTitle>
+                </StyledGrid>
+                </Hidden>
 
-                <LoginWrapper>
+                <StyledGrid>
+                    <Hidden mdUp>
+                        <StyledGrid>
+                            <Title>chAIn</Title>
+                            <SubTitle>Conectando pessoas atráves de ideias</SubTitle>
+                        </StyledGrid>
+                    </Hidden>
                     <StyledPaper>
                         { this.state.error ? <p className="alert alert-danger">{ this.state.error }</p> : '' }
-                        <StyledTypography>
+                        <StyledAvatar>
+                            <FingerPrint/>
+                        </StyledAvatar>
+                        <StyledTypography fontSize={30}>
                             Login
                         </StyledTypography>
                         <TextField
@@ -183,13 +199,13 @@ export default class Home extends Component {
                             onChange = {this.handleChangePassword}
                         />
 
-                        <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link></LittleText>
+                        <LittleText> <Link to="/signup"> Ainda não tem uma conta? Clique aqui! </Link></LittleText>
                         <StyledFab variant="extended" aria-label="Delete" onClick ={this.login}>
                              <StyledNavigationIcon/>
                              Enter
                         </StyledFab>
                     </StyledPaper>
-                </LoginWrapper>
+                </StyledGrid>
             </Background>
 
         );

@@ -7,7 +7,6 @@ import {SuggestionSubject} from './SuggestionSubject';
 import Items from "./items";
 import Home from "../common/Home";
 import Logout from "../common/Logout";
-import {Messages} from "../../../lib/collections";
 import {TextContainer} from "./TextContainer";
 import BarTop from "./BarTop";
 import Grid from '@material-ui/core/Grid';

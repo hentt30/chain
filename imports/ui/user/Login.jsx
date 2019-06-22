@@ -141,7 +141,7 @@ export default class Login extends Component {
                     />
                     <LittleText> <Link to="/signup"> Still don't have an account? Click here! </Link></LittleText>
                     <StyledFab variant="extended" aria-label="Delete" onClick ={this.login}>
-                        <StyledNavigationIcon onClick ={this.login} />
+                        <StyledNavigationIcon/>
                         Enter
                     </StyledFab>
                 </StyledPaper>
