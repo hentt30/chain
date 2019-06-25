@@ -6,7 +6,7 @@ import Hidden from "@material-ui/core/Hidden";
 import {SuggestionSubject} from "./SuggestionSubject";
 
 const MessagesBox = styled.div`
-    height: 100%;
+    height: 90%;
     width: 100%;
     overflow-y: auto;
     text-align:left;
@@ -15,7 +15,7 @@ const MessagesBox = styled.div`
 `;
 
 const PageWrapper = styled.div`
-    height: 86%;
+    height: 90%;
     margin-bottom: 16px;
     margin-left: 10px;
     margin-right: 10px;
@@ -85,9 +85,7 @@ export class MessageList extends React.Component{
 
         return (
             <PageWrapper>
-                <Hidden>
-                    <SuggestionSubject {...this.props}/>
-                </Hidden>
+                <SuggestionSubject {...this.props}/>
                 <MessagesBox id="message_box">
                     {this.state.messagesList}
                 </MessagesBox>
